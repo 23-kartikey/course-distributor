@@ -1,5 +1,7 @@
 package course.course_distributor.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,10 @@ public class CourseService {
 
     @Autowired
     private CourseRepository courseRepo;
+
+    public List<CourseResponse> getCourses(){
+        return courseRepo.findAll().stream().map(this::toResponse).toList();
+    }
 
     public CourseResponse newCourse(CourseRequest req){
         return toResponse(courseRepo.save(toCourse(req)));
