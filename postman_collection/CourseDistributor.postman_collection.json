@@ -1,0 +1,35 @@
+{
+  "info": {
+    "_postman_id": "9946b57e-3549-4d84-bd5f-36ef1f023325",
+    "name": "CourseDistributor",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "50835711",
+    "_collection_link": "https://go.postman.co/collection/50835711-9946b57e-3549-4d84-bd5f-36ef1f023325?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "PostUser",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "PostCourse",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "LikeCourse",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    }
+  ]
+}
