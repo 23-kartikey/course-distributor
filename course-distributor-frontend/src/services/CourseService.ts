@@ -1,21 +1,13 @@
-export const getCourses = async() => {
-    try{
-        const response = await fetch("http://localhost:8080/course")
-    
-        if(!response.ok){
-            throw new Error;
-        }
+import API from "./api";
 
-        return response.json();
-    }
-    catch(Error){
-        throw Error;
-    }
-
+export const getCourses = async () => {
+    const response = await API.get("/course");
+    return response;
 }
 
 type CreateCourse = {
-    name: string,
+    id: number,
+    title: string,
     description: string
 }
 
