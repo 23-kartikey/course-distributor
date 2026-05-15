@@ -27,6 +27,9 @@ public class Course{
 
     private String name;
 
+    private String description;
+
+
     @ManyToMany(mappedBy="likedCourses")
     private Set<User> likes;
 
