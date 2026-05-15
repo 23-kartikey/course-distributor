@@ -1,5 +1,5 @@
 package course.course_distributor.dto;
 
-public record CourseRequest(String name){
+public record CourseRequest(String name, String description){
     
 }
