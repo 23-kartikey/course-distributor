@@ -56,7 +56,16 @@ public class JwtTokenProvider {
 
     }
 
-    
+    public boolean validateToken(String token){
+
+        Jwts.parser()
+            .verifyWith((SecretKey) key())
+            .build()
+            .parse(token);
+
+        return true;
+
+    }
 
 
 }
