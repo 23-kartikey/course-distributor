@@ -7,18 +7,25 @@ const Courses = () =>{
     const [courses, setCourses]= useState<Course[]>([]);
 
     useEffect(()=>{
-        const fetchCourses = async() => {
-            const data = await getCourses();
-            setCourses(data);
-        }
-        fetchCourses();
-    })
+        
+        const loadCourses = async() => {
+            try{
+                const data = await getCourses();
+                setCourses(data);
+            }
+            catch(error){
+                console.log("Unable to fetch courses: " + error);
+            }
+        };
+
+        loadCourses();
+    }, [])
 
     return(
         <div>
             {courses.map(course=>(
-                <ul>
-                    <li key={course.id}>
+                <ul key={course.id}>
+                    <li>
                         {course.name}
                     </li>
                 </ul>
