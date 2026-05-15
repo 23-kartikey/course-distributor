@@ -1,6 +1,7 @@
 import { useState, useEffect, type SubmitEventHandler } from "react";
 import { getCourses, createCourse } from "../services/CourseService";
 import type { Course } from "../types/course";
+import CourseForm from "../components/CourseForm";
 
 const Courses = () =>{
     
@@ -26,10 +27,11 @@ const Courses = () =>{
             {courses.map(course=>(
                 <ul key={course.id}>
                     <li>
-                        {course.name}
+                        <p><strong>{course.name}</strong>  {course.description}</p>
                     </li>
                 </ul>
             ))}
+            <CourseForm />
         </div>
     );
 
