@@ -1,13 +1,14 @@
 import API from "./api";
+import type { Course } from "../types/course";
 
-export const getCourses = async () => {
+export const getCourses = async ():Promise<Course[]> => {
     const response = await API.get("/course");
-    return response;
+    return response.data;
 }
 
 type CreateCourse = {
     id: number,
-    title: string,
+    name: string,
     description: string
 }
 
