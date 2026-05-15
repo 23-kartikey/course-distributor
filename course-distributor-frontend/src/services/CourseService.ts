@@ -6,28 +6,13 @@ export const getCourses = async ():Promise<Course[]> => {
     return response.data;
 }
 
-export const createCourse = async( course : CreateCourse ) => {
-    try{
-        const response = await fetch("http://localhost:8080/course",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type":"application/json"
-                },
-                body:JSON.stringify(course)
-            }
-        )
-        
-        if(!response.ok){
-            throw new Error;
-        }
+export const createCourse = async( course : CreateCourse ):Promise<Course> => {
+    
+    const response = await API.post(
+        "/course",
+        course
+    )
 
-        const data = await response.json();
+    return response.data;
 
-        console.log(data);
-    }
-
-    catch(Error){
-        throw Error;
-    }
 }
