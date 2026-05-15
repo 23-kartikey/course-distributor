@@ -1,66 +1,30 @@
 import { useState, useEffect, type SubmitEventHandler } from "react";
 import { getCourses, createCourse } from "../services/CourseService";
+import type { Course } from "../types/course";
 
-type Course = {
-    id: number,
-    name: string,
-    description: string
-}
-
-const Courses = () => {
-
-    const [courses, setCourses]=useState<Course[]>([]);
-    const [course, setCourse]=useState<Course>();
-    const [status, setStatus]=useState(false);
-
-    const postCourse=(course: Course)=>{
-        createCourse(course).then(()=>setStatus(true));
-    }
+const Courses = () =>{
+    
+    const [courses, setCourses]= useState<Course[]>([]);
 
     useEffect(()=>{
-        getCourses().then(data=>setCourses(data))
-    }, []);
+        const fetchCourses = async() => {
+            const data = await getCourses();
+            setCourses(data);
+        }
+        fetchCourses();
+    })
 
     return(
-        <List items={courses} />
+        <div>
+            {courses.map(course=>(
+                <ul>
+                    <li key={course.id}>
+                        {course.name}
+                    </li>
+                </ul>
+            ))}
+        </div>
     );
-
-}
-
-type ListProps = {
-    items: Course[]
-}
-
-const List=({ items }: ListProps)=>{
-    return(
-        <ul>
-            {
-                items.map(item=>(
-                    <ListItem key={item.id} item={item} />
-                ))
-            }
-        </ul>
-    )
-}
-
-type ListItemProps = {
-    item: Course
-}
-
-
-const ListItem=({ item }: ListItemProps)=>{
-    return(
-        <li>
-            {item.name}
-        </li>
-    );
-}
-
-type CourseInputProps = {
-    handleSubmit: React.SubmitEvent<
-}
-
-const CourseInput=({handleSubmit}:CourseInputProps)=>{
 
 }
 
