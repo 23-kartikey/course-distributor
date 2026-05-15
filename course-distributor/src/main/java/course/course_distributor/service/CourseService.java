@@ -28,6 +28,7 @@ public class CourseService {
         return Course
             .builder()
             .name(req.name())
+            .description(req.description())
             .build();
     }
 
@@ -36,6 +37,7 @@ public class CourseService {
             .builder()
             .id(course.getId())
             .name(course.getName())
+            .description(course.getDescription())
             .build();
     }
 
