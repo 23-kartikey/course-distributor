@@ -1,5 +1,7 @@
 package course.course_distributor.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -18,6 +20,8 @@ import course.course_distributor.security.JwtTokenProvider;
 
 @Service
 public class AuthServiceImpl implements AuthService{
+
+    private static final Logger logger= LoggerFactory.getLogger(AuthServiceImpl.class);
     
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -34,19 +38,24 @@ public class AuthServiceImpl implements AuthService{
     @Override
     public LoginResponse login(LoginRequest req){
         
+        logger.info("Attempting login for: {}", req.usernameOrEmail());
+
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(req.usernameOrEmail(), req.password()));
         
+        logger.info("Authentication successful");
+
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String token = tokenProvider.generateToken(authentication);
 
-        return LoginResponse.builder().accessToken(token).build();
+        return LoginResponse.builder().token(token).build();
     }
 
     @Override
     public void register(RegisterRequest req){
 
         User user = User.builder()
+                        .name(req.name())
                         .username(req.username())
                         .email(req.email())
                         .password(passwordEncoder.encode(req.password()))
