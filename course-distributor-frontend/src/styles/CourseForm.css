@@ -21,9 +21,13 @@
 }
 
 .course-form input{
-    padding: 12px;
+    padding: 10px;
     border: 1px solid #d1d5db;
     border-radius: 8px;
     font-size: 16px;
     outline: none;
+}
+
+.course-form input:focus{
+    border-color: #8f25eb;
 }
