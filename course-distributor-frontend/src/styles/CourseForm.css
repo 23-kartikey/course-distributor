@@ -43,3 +43,7 @@
     cursor: pointer;
     transition: 0.2s;
 }
+
+.course-form button:hover {
+    background-color: #9901b4ac;
+}
