@@ -33,11 +33,11 @@ const CourseForm = () => {
 
     return (
         <form onSubmit={handleSubmit} className="course-form">
-            <h1 className="course-title">Create Course</h1><br />
+            <h1 className="course-form-title">Create Course</h1>
             <label>Title: </label>
-            <input name = "name" onChange={handleChange} value={course.name} /><br />
+            <input name = "name" onChange={handleChange} value={course.name} />
             <label>Description: </label>
-            <input name = "description" onChange={handleChange} value={course.description} /><br />
+            <input name = "description" onChange={handleChange} value={course.description} />
             <button type="submit">Create</button>
         </form>
     );
