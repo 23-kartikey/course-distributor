@@ -9,8 +9,7 @@ import lombok.Setter;
 @Builder
 public class LoginResponse{
     
-    private String accessToken;
+    private String token;
 
-    private final String tokenType = "Bearer";
 
 }
