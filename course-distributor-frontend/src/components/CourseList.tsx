@@ -26,8 +26,9 @@ const CourseList = () => {
             <h1 className="course-title">Courses</h1>
             {courses.map(course=>(
                 <ul className="course-list" key={course.id}>
-                    <li>
-                        <p><strong>{course.name}</strong>  {course.description}</p>
+                    <li className="course-card">
+                        <div className="course-name">{course.name}</div>  
+                        <div className="course-description">{course.description}</div>
                     </li>
                 </ul>
             ))}

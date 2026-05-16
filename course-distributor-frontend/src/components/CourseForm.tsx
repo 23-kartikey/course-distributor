@@ -1,7 +1,7 @@
 import { useState } from "react";
 import type { CreateCourse } from "../types/course";
 import { createCourse } from "../services/CourseService";
-import "../styles/Courses.css";
+import "../styles/CourseForm.css";
 
 const CourseForm = () => {
 
@@ -32,16 +32,14 @@ const CourseForm = () => {
     }
 
     return (
-        <div className="course-sub">
-        <form onSubmit={handleSubmit}>
-            <h1 className="course-title">Create Course</h1><br />
+        <form onSubmit={handleSubmit} className="course-form">
+            <h1 className="course-form-title">Create Course</h1>
             <label>Title: </label>
-            <input name = "name" onChange={handleChange} value={course.name} /><br />
+            <input name = "name" onChange={handleChange} value={course.name} />
             <label>Description: </label>
-            <input name = "description" onChange={handleChange} value={course.description} /><br />
+            <input name = "description" onChange={handleChange} value={course.description} />
             <button type="submit">Create</button>
         </form>
-        </div>
     );
 
 }
