@@ -31,3 +31,15 @@
 .course-form input:focus{
     border-color: #8f25eb;
 }
+
+.course-form button{
+    margin-top: 10px;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    background-color: #7411cad5;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s;
+}
