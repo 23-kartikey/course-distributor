@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import course.course_distributor.dto.LoginRequest;
 import course.course_distributor.dto.LoginResponse;
+import course.course_distributor.dto.RegisterRequest;
 import course.course_distributor.interfaces.AuthService;
 
 @RestController
@@ -22,7 +23,16 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest req){
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(authService.login(req));
+        return ResponseEntity.status(HttpStatus.OK).body(authService.login(req));
+
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<Void> register(@RequestBody RegisterRequest req){
+
+        authService.register(req);
+
+        return ResponseEntity.status(HttpStatus.CREATED).build();
 
     }
 
