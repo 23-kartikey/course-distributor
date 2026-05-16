@@ -19,3 +19,11 @@
 .course-form label{
     font-weight: 600;
 }
+
+.course-form input{
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+}
