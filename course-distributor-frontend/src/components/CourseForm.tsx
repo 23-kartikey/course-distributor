@@ -32,8 +32,7 @@ const CourseForm = () => {
     }
 
     return (
-        <div>
-        <form onSubmit={handleSubmit} >
+        <form onSubmit={handleSubmit} className="course-form">
             <h1 className="course-title">Create Course</h1><br />
             <label>Title: </label>
             <input name = "name" onChange={handleChange} value={course.name} /><br />
@@ -41,7 +40,6 @@ const CourseForm = () => {
             <input name = "description" onChange={handleChange} value={course.description} /><br />
             <button type="submit">Create</button>
         </form>
-        </div>
     );
 
 }
