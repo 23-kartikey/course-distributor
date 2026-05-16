@@ -2,7 +2,6 @@ package course.course_distributor.entity;
 
 import java.util.Set;
 
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,7 +21,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class User {
+public class User{
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -46,5 +45,13 @@ public class User {
         inverseJoinColumns=@JoinColumn(name="course_id")
     )
     private Set<Course> likedCourses;
+
+    @ManyToMany
+    @JoinTable(
+        name="user_roles",
+        joinColumns= @JoinColumn(name="user_id", referencedColumnName = "id"),
+        inverseJoinColumns = @JoinColumn(name="role_id", referencedColumnName="id")
+    )
+    private Set<Role> roles;
     
 }
