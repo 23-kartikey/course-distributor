@@ -17,7 +17,7 @@ import course.course_distributor.service.CourseService;
 
 @RestController
 @CrossOrigin(origins="http://localhost:5173")
-@RequestMapping("/course")
+@RequestMapping("public/course")
 public class CourseController {
 
     @Autowired
