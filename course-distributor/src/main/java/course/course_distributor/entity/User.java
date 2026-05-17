@@ -14,13 +14,14 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Setter
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
+@RequiredArgsConstructor
 @Builder
 public class User{
     
@@ -28,17 +29,23 @@ public class User{
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    @Column(length = 15)
+    private String firstName;
 
-    @Column(nullable = false, unique=true)
+    @Column(length = 15)
+    private String lastName;
+
+    @Column(unique=true, length = 15)
     private String username;
 
     @Column(nullable = false, unique=true)
     private String email;
 
+    @Column(nullable = false)
     private String password;
 
-
+    @Column( length = 300)
+    private String about;
 
 
     @ManyToMany
