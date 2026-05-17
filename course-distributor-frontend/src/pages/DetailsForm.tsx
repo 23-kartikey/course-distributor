@@ -34,7 +34,7 @@ const DetailsForm = () => {
     }
 
     return(
-        <div>
+        <div className="form-container">
             <form onSubmit={handleSubmit}>
                 <label>First Name</label>
                 <input 
