@@ -1,6 +1,12 @@
+import "../styles/Header.css";
+import Navbar from "./Navbar";
+
 const Header = () =>{
     return(
-        <h1>Course Ditributor</h1>
+        <div className="header-container">
+            <h1 className="header">CORE</h1>
+            <Navbar />
+        </div>
     )
 }
 

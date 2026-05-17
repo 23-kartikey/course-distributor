@@ -1,3 +1,16 @@
 .header{
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     color:rgb(35, 35, 35);
+    display: flex;
+    align-items: center;
+    justify-content:flex-start;
+    font-size: 75px;
+    padding: 10px;
+}
+
+.header-container {
+    /* background-color: rgba(168, 15, 122, 0.854); */
+    background-image: linear-gradient(to bottom, rgba(168, 15, 122, 0.854), rgba(102, 6, 73, 0.854));
+    display: flex;
+    justify-content: space-between;
 }

@@ -12,7 +12,6 @@ const App = () => {
     return(
         <BrowserRouter>
             <Header />
-            <Navbar />
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/courses" element={<Courses />} />
