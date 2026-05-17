@@ -29,6 +29,7 @@ const Register = () => {
         try{
             await register(registerForm);
             setSuccess(true);
+            console.log("Registration Successfull!");
             navigate("/register-details");
         }
         catch(error){
