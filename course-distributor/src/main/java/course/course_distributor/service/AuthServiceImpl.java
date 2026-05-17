@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import course.course_distributor.dto.LoginRequest;
 import course.course_distributor.dto.LoginResponse;
 import course.course_distributor.dto.RegisterRequest;
+import course.course_distributor.dto.RegisterResponse;
 import course.course_distributor.entity.User;
 import course.course_distributor.interfaces.AuthService;
 import course.course_distributor.repository.UserRepository;
@@ -52,16 +53,16 @@ public class AuthServiceImpl implements AuthService{
     }
 
     @Override
-    public void register(RegisterRequest req){
+    public RegisterResponse register(RegisterRequest req){
 
         User user = User.builder()
-                        .name(req.name())
-                        .username(req.username())
                         .email(req.email())
                         .password(passwordEncoder.encode(req.password()))
                         .build();
 
-        userRepo.save(user);
+        Long id = userRepo.save(user).getId();
+
+        return new RegisterResponse(id);
 
     }
 
