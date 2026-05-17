@@ -17,7 +17,7 @@ import course.course_distributor.service.UserService;
 
 @RestController
 @CrossOrigin(origins="http://localhost:5173")
-@RequestMapping("public/user")
+@RequestMapping("user")
 public class UserController {
 
     Logger logger = LoggerFactory.getLogger(UserController.class);
