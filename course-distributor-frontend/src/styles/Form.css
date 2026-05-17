@@ -32,3 +32,9 @@ body{
     text-align: center;
     color: #222;
 }
+
+.form label{
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #444;
+}
