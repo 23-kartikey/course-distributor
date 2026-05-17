@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { DetailsFormType } from "../types/auth";
 import { fillDetails } from "../services/UserService";
+import "../styles/Form.css";
 
 const DetailsForm = () => {
 
