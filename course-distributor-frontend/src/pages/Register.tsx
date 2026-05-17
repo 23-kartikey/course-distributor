@@ -27,9 +27,8 @@ const Register = () => {
         e.preventDefault();
 
         try{
-            const response = await register(registerForm);
+            await register(registerForm);
             setSuccess(true);
-            localStorage.setItem("id", String(response.id));
             navigate("/register-details");
         }
         catch(error){
