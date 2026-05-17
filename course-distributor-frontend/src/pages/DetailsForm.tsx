@@ -24,7 +24,7 @@ const DetailsForm = () => {
         e.preventDefault();
 
         try{
-            const response = await fillDetails(details);
+            await fillDetails(details);
             console.log("Details Filled!");
         }
         catch(error){
