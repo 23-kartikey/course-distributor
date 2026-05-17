@@ -1,11 +1,15 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import type { RegisterForm } from "../types/auth";
 import { register } from "../services/AuthService";
 import "../styles/Auth.css";
 
 const Register = () => {
 
-    const [registerForm, setRegisterForm] = useState<RegisterForm>({ email:'', username:'', password:'', name: '', });
+    const navigate = useNavigate();
+    const [registerForm, setRegisterForm] = useState<RegisterForm>({ email:'', password:''});
+    const [success, setSuccess] = useState(false);
+    const [fail, setFail] = useState(false);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 
@@ -24,9 +28,12 @@ const Register = () => {
 
         try{
             const response = await register(registerForm);
-            console.log("Registration Successful! - ", response);
+            setSuccess(true);
+            localStorage.setItem("id", String(response.id));
+            navigate("/register-details");
         }
         catch(error){
+            setFail(true);
             console.log("Registration failed: ", error);
         }
 
@@ -41,12 +48,10 @@ const Register = () => {
                 <input type="text" value={registerForm.email} onChange={handleChange} name="email" />
                 <label>Password</label>
                 <input type="password" value={registerForm.password} onChange={handleChange} name="password" />
-                <label>Name</label>
-                <input type="text" value={registerForm.name} onChange={handleChange} name="name" />
-                <label>Username</label>
-                <input type="text" value={registerForm.username} onChange={handleChange} name="username" />
                 <button type="submit">Register</button>
                 </div>
+                {fail && <p style={{"color" : "red"}}>Unable to register</p>}
+                {success && <p style={{"color": "green"}}>Registered Successfully!</p>}
             </form>
         </div>
     )
