@@ -11,9 +11,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import course.course_distributor.dto.LoginRequest;
-import course.course_distributor.dto.LoginResponse;
 import course.course_distributor.dto.RegisterRequest;
-import course.course_distributor.dto.RegisterResponse;
+import course.course_distributor.dto.TokenResponse;
 import course.course_distributor.entity.User;
 import course.course_distributor.interfaces.AuthService;
 import course.course_distributor.repository.UserRepository;
@@ -37,11 +36,15 @@ public class AuthServiceImpl implements AuthService{
     private PasswordEncoder passwordEncoder;
 
     @Override
-    public LoginResponse login(LoginRequest req){
+    public TokenResponse login(LoginRequest req){
         
         logger.info("Attempting login for: {}", req.usernameOrEmail());
 
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(req.usernameOrEmail(), req.password()));
+        Authentication authentication = authenticationManager
+                                        .authenticate(
+                                            new UsernamePasswordAuthenticationToken(
+                                                req.usernameOrEmail(), 
+                                                req.password()));
         
         logger.info("Authentication successful");
 
@@ -49,20 +52,29 @@ public class AuthServiceImpl implements AuthService{
 
         String token = tokenProvider.generateToken(authentication);
 
-        return LoginResponse.builder().token(token).build();
+        return new TokenResponse(token);
     }
 
     @Override
-    public RegisterResponse register(RegisterRequest req){
+    public TokenResponse register(RegisterRequest req){
 
         User user = User.builder()
                         .email(req.email())
                         .password(passwordEncoder.encode(req.password()))
                         .build();
 
-        Long id = userRepo.save(user).getId();
+        userRepo.save(user).getId();
 
-        return new RegisterResponse(id);
+        Authentication authentication = authenticationManager.authenticate
+                                            (new UsernamePasswordAuthenticationToken(
+                                                req.email(),
+                                                req.password()
+                                            ));
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        String token = tokenProvider.generateToken(authentication);
+
+        return new TokenResponse(token);
 
     }
 
