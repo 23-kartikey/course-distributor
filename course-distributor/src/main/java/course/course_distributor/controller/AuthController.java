@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import course.course_distributor.dto.LoginRequest;
 import course.course_distributor.dto.LoginResponse;
 import course.course_distributor.dto.RegisterRequest;
+import course.course_distributor.dto.RegisterResponse;
 import course.course_distributor.interfaces.AuthService;
 
 @RestController
@@ -28,17 +29,16 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest req){
-        logger.info("=========REQUEST IS IN AUTHCONTROLLER===========");
+        logger.info("=========LOGIN REQUEST IS IN AUTHCONTROLLER===========");
         return ResponseEntity.status(HttpStatus.OK).body(authService.login(req));
 
     }
 
     @PostMapping("/register")
-    public ResponseEntity<Void> register(@RequestBody RegisterRequest req){
+    public ResponseEntity<RegisterResponse> register(@RequestBody RegisterRequest req){
+        logger.info("=========REGISTER REQUEST IS IN AUTHCONTROLLER===========");
 
-        authService.register(req);
-
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        return ResponseEntity.status(HttpStatus.CREATED).body(authService.register(req));
 
     }
 
