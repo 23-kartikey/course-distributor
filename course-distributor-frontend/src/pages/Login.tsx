@@ -23,8 +23,7 @@ const Login = () => {
         e.preventDefault();
 
         try{
-            const response = await login(loginForm);
-            localStorage.setItem("token", response.token );
+            await login(loginForm);
             console.log("Successful Login!");
         }
         catch(error){
