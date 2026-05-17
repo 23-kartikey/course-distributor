@@ -70,3 +70,8 @@ body{
 
     transition: 0.2s ease;
 }
+
+.form button:hover{
+    background-color: #4338ca;
+    transform: translateY(-1px);
+}
