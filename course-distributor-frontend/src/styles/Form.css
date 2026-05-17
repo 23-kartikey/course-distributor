@@ -40,7 +40,7 @@
 
 .form input:focus{
     outline: none;
-    border-color: #4f46e5;
+    border-color: #8f25eb;
     box-shadow: 0 0 0 3px rgba(79,70,229,0.15);
 }
 
