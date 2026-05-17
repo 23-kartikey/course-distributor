@@ -1,5 +1,7 @@
 package course.course_distributor.service;
 
+import java.util.Set;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +15,10 @@ import org.springframework.stereotype.Service;
 import course.course_distributor.dto.LoginRequest;
 import course.course_distributor.dto.RegisterRequest;
 import course.course_distributor.dto.TokenResponse;
+import course.course_distributor.entity.Role;
 import course.course_distributor.entity.User;
 import course.course_distributor.interfaces.AuthService;
+import course.course_distributor.repository.RoleRepository;
 import course.course_distributor.repository.UserRepository;
 import course.course_distributor.security.JwtTokenProvider;
 
@@ -31,6 +35,9 @@ public class AuthServiceImpl implements AuthService{
 
     @Autowired
     private UserRepository userRepo;
+
+    @Autowired
+    private RoleRepository roleRepo;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -58,12 +65,9 @@ public class AuthServiceImpl implements AuthService{
     @Override
     public TokenResponse register(RegisterRequest req){
 
-        User user = User.builder()
-                        .email(req.email())
-                        .password(passwordEncoder.encode(req.password()))
-                        .build();
+        registerUser(req);
 
-        userRepo.save(user).getId();
+        logger.info("===================Attempting login for: {}", req.email());
 
         Authentication authentication = authenticationManager.authenticate
                                             (new UsernamePasswordAuthenticationToken(
@@ -72,9 +76,25 @@ public class AuthServiceImpl implements AuthService{
                                             ));
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
+        logger.info("================Authentication successful==================");
+
         String token = tokenProvider.generateToken(authentication);
 
         return new TokenResponse(token);
+
+    }
+
+    private void registerUser(RegisterRequest req){
+        
+        Role role = roleRepo.findByName("USER");
+
+        User user = User.builder()
+                        .email(req.email())
+                        .password(passwordEncoder.encode(req.password()))
+                        .roles(Set.of(role))
+                        .build();
+
+        userRepo.save(user).getId();
 
     }
 
