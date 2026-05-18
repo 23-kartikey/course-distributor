@@ -5,7 +5,8 @@ import "../styles/Auth.css";
 
 const Login = () => {
 
-
+    const [success, setSuccess] = useState(false);
+    const [fail, setFail] = useState(false);
     const [loginForm, setLoginForm] = useState<LoginForm>({ usernameOrEmail:'', password:''});
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,9 +27,11 @@ const Login = () => {
         try{
             await login(loginForm);
             console.log("Successful Login!");
+            setSuccess(true);
             window.location.href = "/";
         }
         catch(error){
+            setFail(true);
             console.log("Login error: ", error);
         }
 
@@ -46,6 +49,8 @@ const Login = () => {
                 <button type="submit">Login</button>
                 </div>
                 <p>New here? Click <a href="/register">here</a> to register</p>
+                {fail && <p style={{"color" : "red"}}>Unable to register</p>}
+                {success && <p style={{"color": "green"}}>Registered Successfully!</p>}
             </form>
         </div>
     )

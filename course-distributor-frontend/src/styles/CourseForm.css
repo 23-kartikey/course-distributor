@@ -1,5 +1,5 @@
 .course-form{
-    background-color: white;
+    background-color: #f3e2d2b9;
     padding: 40px;
     padding-right: 70px;
     border-radius: 12px;
@@ -17,6 +17,7 @@
 }
 
 .course-form label{
+    color: rgba(35, 35, 35, 0.944);
     font-weight: 600;
 }
 
@@ -29,7 +30,7 @@
 }
 
 .course-form input:focus{
-    border-color: #8f25eb;
+    border-color: #1f0536;
 }
 
 .course-form button{
@@ -37,7 +38,7 @@
     padding: 14px;
     border: none;
     border-radius: 8px;
-    background-color: #7411cad5;
+    background-color: #07020cd5;
     color: white;
     font-size: 16px;
     cursor: pointer;
@@ -45,5 +46,5 @@
 }
 
 .course-form button:hover {
-    background-color: #9901b4ac;
+    background-color: #000000e9;
 }
