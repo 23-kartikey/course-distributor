@@ -1,18 +1,19 @@
 import { useState, useEffect } from "react";
 import type {Course} from "../types/course";
 import CourseCard from "../components/CourseCard";
+import { getCourses } from "../services/CourseService";
 import "../styles/Courses.css";
 
 const Courses = () =>{
     
     const [courses, setCourses] = useState<Course[]>([{
             id:1,
-            name: "Spring",
+            name: "Test 1",
             shortDescription: "This is a test description to help study"
         },
         {
             id:2,
-            name: "Python",
+            name: "Test 2",
             shortDescription: "This is a test description to help study"
         },
         {
@@ -22,23 +23,41 @@ const Courses = () =>{
     },
     {
             id:4,
-            name: "Spring",
+            name: "Test 3",
             shortDescription: "This is a test description to help study"
         },
         {
             id:5,
-            name: "Python",
+            name: "Test 4",
             shortDescription: "This is a test description to help study"
         },
         {
         id:6,
-        name: "Flunk",
+        name: "Test 5",
         shortDescription: "How to have fun?"
     }
 
     ])
     const [page, setPage] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
+
+    useEffect(() => {
+
+        const fetchCourses= async() => {
+            try{
+                const response = await getCourses(page);
+                setCourses(response.content);
+                setTotalPages(response.totalPages);
+            }
+            catch(error){
+                console.log("Unable to fetch courses", error);
+            }
+        }
+
+        fetchCourses();
+
+
+    }, [page])
 
     return(
         <div className="courses-page">
