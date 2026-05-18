@@ -8,7 +8,8 @@ const Navbar = () => {
         <nav className="navbar">
             <Link className="nav-link" to="/">Home</Link>
             <Link className="nav-link" to="/courses">Courses</Link>
-            {token && <Link className="nav-link" to="/login">Login/Register</Link>}
+            <Link className="nav-link" to="/create-course">Create Course</Link>
+            {token?true:false && <Link className="nav-link" to="/login">Login/Register</Link>}
         </nav>
     );
 }
