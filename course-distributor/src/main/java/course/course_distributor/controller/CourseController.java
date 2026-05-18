@@ -17,18 +17,18 @@ import course.course_distributor.service.CourseService;
 
 @RestController
 @CrossOrigin(origins="http://localhost:5173")
-@RequestMapping("public/course")
+@RequestMapping
 public class CourseController {
 
     @Autowired
     private CourseService service;
 
-    @GetMapping
+    @GetMapping("public/courses")
     public ResponseEntity<List<CourseResponse>> getCourses(){
         return ResponseEntity.ok(service.getCourses());
     }
 
-    @PostMapping
+    @PostMapping("/courses/new")
     public ResponseEntity<CourseResponse> newCourse(@RequestBody CourseRequest req){
         return ResponseEntity.status(201).body(service.newCourse(req));
     }
