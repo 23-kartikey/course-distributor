@@ -37,6 +37,14 @@ public class Course{
     @JoinColumn(name = "author_id")
     private User author;
 
+    @ManyToMany
+    @JoinTable(
+        name="course_students",
+        joinColumns=@JoinColumn(name = "course_id"),
+        inverseJoinColumns=@JoinColumn(name = "student_id")
+    )
+    private List<User> students;
+
     @ManyToMany(mappedBy="likedCourses")
     private Set<User> likes;
 
