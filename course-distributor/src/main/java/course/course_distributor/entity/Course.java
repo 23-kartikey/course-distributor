@@ -30,6 +30,8 @@ public class Course{
 
     private String name;
 
+    private String shortDescription;
+
     private String description;
 
     @ManyToOne
