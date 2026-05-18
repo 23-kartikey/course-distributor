@@ -1,5 +1,6 @@
 package course.course_distributor.entity;
 
+import java.util.List;
 import java.util.Set;
 
 import jakarta.persistence.Column;
@@ -10,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -46,6 +48,8 @@ public class User{
     @Column( length = 300)
     private String about;
 
+    @OneToMany(mappedBy = "author")
+    private Set<Course> authoredCourses;
 
     @ManyToMany
     @JoinTable(
