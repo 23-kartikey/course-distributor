@@ -10,7 +10,7 @@
 
 .header-container {
     /* background-color: rgba(168, 15, 122, 0.854); */
-    background-image: linear-gradient(to bottom, rgba(168, 15, 122, 0.854), rgba(102, 6, 73, 0.854));
+    background-image: linear-gradient(to bottom, rgba(233, 214, 227, 0.375), rgba(142, 61, 7, 0.854));
     display: flex;
     justify-content: space-between;
 }
