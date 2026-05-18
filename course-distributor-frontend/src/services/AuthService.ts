@@ -19,3 +19,11 @@ export const logout = () => {
     localStorage.removeItem("token");
     console.log("Logged out");
 }
+
+export const getToken = () => {
+    return localStorage.getItem("token");
+}
+
+export const isLoggedIn = () => {
+    return !!getToken();
+}
