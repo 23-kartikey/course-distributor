@@ -1,6 +1,5 @@
 package course.course_distributor.entity;
 
-import java.util.List;
 import java.util.Set;
 
 import jakarta.persistence.Entity;
@@ -43,7 +42,7 @@ public class Course{
         joinColumns=@JoinColumn(name = "course_id"),
         inverseJoinColumns=@JoinColumn(name = "student_id")
     )
-    private List<User> students;
+    private Set<User> students;
 
     @ManyToMany(mappedBy="likedCourses")
     private Set<User> likes;
