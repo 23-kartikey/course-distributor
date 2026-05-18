@@ -1,8 +1,8 @@
 package course.course_distributor.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import course.course_distributor.dto.CourseRequest;
@@ -16,8 +16,8 @@ public class CourseService {
     @Autowired
     private CourseRepository courseRepo;
 
-    public List<CourseResponse> getCourses(){
-        return courseRepo.findAll().stream().map(this::toResponse).toList();
+    public Page<CourseResponse> getCourses(Pageable pageable){
+        return courseRepo.findAll(pageable).map(this::toResponse);
     }
 
     public CourseResponse newCourse(CourseRequest req){
