@@ -43,6 +43,7 @@ const Login = () => {
                 <input type="password" value={loginForm.password} onChange={handleChange} name="password" />
                 <button type="submit">Login</button>
                 </div>
+                <p>New here? Click <a href="/register">here</a> to register</p>
             </form>
         </div>
     )
