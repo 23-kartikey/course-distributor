@@ -1,6 +1,5 @@
 package course.course_distributor.entity;
 
-import java.util.List;
 import java.util.Set;
 
 import jakarta.persistence.Column;
@@ -52,7 +51,7 @@ public class User{
     private Set<Course> authoredCourses;
 
     @ManyToMany(mappedBy = "students")
-    private List<Course> enrolledCourses;
+    private Set<Course> enrolledCourses;
 
     @ManyToMany
     @JoinTable(
