@@ -1,8 +1,9 @@
 package course.course_distributor.controller;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,8 +25,8 @@ public class CourseController {
     private CourseService service;
 
     @GetMapping("public/courses")
-    public ResponseEntity<List<CourseResponse>> getCourses(){
-        return ResponseEntity.ok(service.getCourses());
+    public ResponseEntity<Page<CourseResponse>> getCourses(Pageable pageable){
+        return ResponseEntity.ok(service.getCourses(pageable));
     }
 
     @PostMapping("/courses/new")
