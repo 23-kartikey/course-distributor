@@ -50,6 +50,7 @@ const Register = () => {
                 <input type="password" value={registerForm.password} onChange={handleChange} name="password" />
                 <button type="submit">Register</button>
                 </div>
+                <p>Already a user? Click <a href="/login">here</a> to login</p>
                 {fail && <p style={{"color" : "red"}}>Unable to register</p>}
                 {success && <p style={{"color": "green"}}>Registered Successfully!</p>}
             </form>
