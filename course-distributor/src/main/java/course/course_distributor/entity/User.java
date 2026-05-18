@@ -51,6 +51,9 @@ public class User{
     @OneToMany(mappedBy = "author")
     private Set<Course> authoredCourses;
 
+    @ManyToMany(mappedBy = "students")
+    private List<Course> enrolledCourses;
+
     @ManyToMany
     @JoinTable(
         name="course_like",
