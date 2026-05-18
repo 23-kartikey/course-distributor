@@ -27,11 +27,11 @@
     cursor:pointer;
     
     /*button style impl*/
-    border: 2px solid black;    
+    border: 3px solid rgb(60, 60, 60);    
 
 }
 
-.navbar button{
+.navbar > button{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -49,8 +49,8 @@
     cursor:pointer;
 }
 
-.navbar button:hover{
-    background-color: rgba(240, 248, 255, 0);
+.navbar > button:hover{
+    background-color: rgb(244, 241, 239);
     box-shadow: none;
 }
 
