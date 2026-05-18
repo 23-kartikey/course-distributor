@@ -27,7 +27,7 @@ const Navbar = () => {
             <Link className="nav-link" to="/courses">Courses</Link>
             <Link className="nav-link" to="/create-course">Create Course</Link>
             { !isAuthPage && 
-                (isLoggedIn ? (<button onClick={handleLogout} >Logout</button>)
+                (isLoggedIn ? (<button className="nav-link" onClick={handleLogout} >Logout</button>)
                     :(<Link className="nav-link" to="/login">Login/Register</Link>)
                     )}
         </nav>
