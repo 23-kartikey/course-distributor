@@ -20,10 +20,12 @@
     font-size: 14px;
 
     background-color: white;
+    transition: 0.7s;
 }
 
 .search-bar input:focus{
     border-color: #8f006c;
+    background-color: rgba(255, 255, 255, 0.278);
 }
 
 .search-btn{
