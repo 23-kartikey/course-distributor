@@ -13,7 +13,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: white;
+    background-color: rgba(240, 248, 255, 0);
     color: rgba(0, 0, 0, 0.899);
     padding: 9px;
     border-color: black;
@@ -27,11 +27,11 @@
     cursor:pointer;
     
     /*button style impl*/
-    border: 3px solid rgb(60, 60, 60);    
+    border: 2px solid black;    
 
 }
 
-.navbar > button{
+/* .navbar > button{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -52,10 +52,10 @@
 .navbar > button:hover{
     background-color: rgb(244, 241, 239);
     box-shadow: none;
-}
+} */
 
 .nav-link:hover {
-    background-color: rgba(240, 248, 255, 0);
+    border-color: black;
     border: 2px solid black;
 
     box-shadow: 
