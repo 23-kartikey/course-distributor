@@ -4,6 +4,8 @@ export type Course = {
     shortDescription: string
 };
 
+
+
 export type CreateCourse = {
     name: string,
     description: string
