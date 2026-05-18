@@ -5,6 +5,7 @@ import "../styles/Auth.css";
 
 const Login = () => {
 
+
     const [loginForm, setLoginForm] = useState<LoginForm>({ usernameOrEmail:'', password:''});
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,6 +26,7 @@ const Login = () => {
         try{
             await login(loginForm);
             console.log("Successful Login!");
+            window.location.href = "/";
         }
         catch(error){
             console.log("Login error: ", error);
