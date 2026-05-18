@@ -37,7 +37,7 @@ public class CourseService {
             .builder()
             .id(course.getId())
             .name(course.getName())
-            .description(course.getDescription())
+            .shortDescription(course.getShortDescription())
             .build();
     }
 
