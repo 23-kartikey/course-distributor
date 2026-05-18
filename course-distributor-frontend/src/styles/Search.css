@@ -19,13 +19,13 @@
 
     font-size: 14px;
 
-    background-color: white;
-    transition: 0.7s;
+    background-color: rgba(255, 255, 255, 0.861);
+    transition: 0.8s;
 }
 
 .search-bar input:focus{
     border-color: #8f006c;
-    background-color: rgba(255, 255, 255, 0.278);
+    background-color: rgba(255, 255, 255, 0.497);
 }
 
 .search-btn{
