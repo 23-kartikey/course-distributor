@@ -1,5 +1,5 @@
 import API from "./api";
-import type { Course, CourseForm } from "../types/course";
+import type { Course } from "../types/course";
 import type { PageResponse } from "../types/types";
 
 export const getCourses = async (page: number):Promise<PageResponse<Course>> => {
