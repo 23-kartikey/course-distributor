@@ -1,6 +1,8 @@
 package course.course_distributor.controller;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,6 +25,8 @@ import course.course_distributor.service.CourseService;
 @RequestMapping
 public class CourseController {
 
+    private static final Logger logger = LoggerFactory.getLogger(CourseController.class);
+
     @Autowired
     private CourseService service;
 
@@ -34,6 +38,7 @@ public class CourseController {
     @PostMapping("/courses/new")
     public ResponseEntity<CourseResponse> newCourse(@RequestBody CourseRequest req,
                                     @AuthenticationPrincipal CustomUserDetails userDetails){
+        logger.info("=============REQUEST INSIDE CONTROLLER=============");
         return ResponseEntity.status(201).body(service.newCourse(req, userDetails.getUser()));
     }
     
