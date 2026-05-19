@@ -61,7 +61,6 @@ const Courses = () =>{
 
     return(
         <div className="courses-page">
-            <h1>Courses</h1>
             <div className = "course-grid">
                 {
                     courses.map(course => (
