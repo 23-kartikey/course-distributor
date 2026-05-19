@@ -1,5 +1,4 @@
 import { useState } from "react";
-import type{ CourseForm } from "../types/course";
 import { postCourse } from "../services/CourseService";
 import "../styles/CourseForm.css";
 
@@ -101,15 +100,25 @@ const CreateCourse = () =>{
                     onChange={(e)=>setCourse(prev=>({...prev, description: e.target.value}))}
                     name="description"
                 />
-                <input 
-                    type="file"
-                    accept="image/*"
-                    onChange={(e) => {
-                        if(e.target.files){
-                            setThumbnail(e.target.files[0]);
-                        }
-                    }}
-                />
+                <div className="file-upload">
+                    {/* <label className="file-text">Thumbnail</label> */}
+                    <input 
+                        id="fileInput"
+                        type="file"
+                        accept="image/*"
+                        className="file-input"
+                        onChange={(e) => {
+                            if(e.target.files){
+                                setThumbnail(e.target.files[0]);
+                            }
+                        }}
+                    />
+                    <label htmlFor="fileInput"
+                            className="file-label"
+                        >
+                            Upload Image
+                        </label>
+                </div>
                 {
                     error && <p className="error">{error}</p>
                 }
