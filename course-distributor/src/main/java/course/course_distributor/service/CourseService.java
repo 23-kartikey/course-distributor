@@ -40,6 +40,12 @@ public class CourseService {
 
         Path path = Paths.get("uploads", fileName);
 
+        Path uploadPath = Paths.get("uploads");
+
+        if(!Files.exists(uploadPath)){
+            Files.createDirectories(uploadPath);
+        }
+
         Files.copy(
             thumbnail.getInputStream(),
             path
