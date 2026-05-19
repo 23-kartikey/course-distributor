@@ -14,7 +14,8 @@
 
 .course-card {
 
-    background: #131313f4;
+    /* background: #131313f4; */
+    background: rgb(15, 23, 42);
 
     border-radius: 24px;
 
@@ -27,12 +28,20 @@
         0 10px 25px rgba(0,0,0,0.25);
 }
 
-.course-card:hover {
+/* .course-card:hover {
 
     transform: translateY(-6px);
+} */
+
+.course-card:hover {
+
+    transform: translateY(-8px);
+
+    box-shadow:
+        0 25px 45px rgba(0,0,0,0.4);
 }
 
-.course-banner {
+/* .course-banner {
 
     height: 160px;
 
@@ -48,21 +57,108 @@
     align-items: end;
 
     padding: 1rem;
+} */
+
+.course-banner {
+
+    position: relative;
+
+    height: 220px;
+
+    overflow: hidden;
+
+    display: flex;
+
+    align-items: end;
+
+    padding: 1rem;
 }
+
+.banner-image {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    z-index: 0;
+
+    filter:
+        brightness(0.9)
+        saturate(1.05);
+    
+    display: block;
+
+}
+
+.banner-overlay {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(0,0,0,0.05) 0%,
+            rgba(0,0,0,0.15) 50%,
+            rgba(15, 23, 42, 0.9) 100%
+        );
+
+    z-index: 1;
+}
+
+/* .course-banner h2 {
+
+    color: white;
+} */
 
 .course-banner h2 {
 
+    position: relative;
+
+    z-index: 2;
+
     color: white;
+
+    font-size: 2rem;
+
+    font-weight: 700;
+
+    margin: 0;
+
 }
+
+/* .course-content {
+
+    padding: 1.2rem;
+} */
 
 .course-content {
 
-    padding: 1.2rem;
+    padding: 1.3rem;
+
+    background:
+        rgba(15, 23, 42, 0.96);
 }
+
+/* .course-content p {
+
+    color: #9ca3af;
+
+    margin-bottom: 1rem;
+} */
 
 .course-content p {
 
-    color: #9ca3af;
+    color: #cbd5e1;
+
+    line-height: 1.6;
 
     margin-bottom: 1rem;
 }
@@ -112,7 +208,18 @@
     cursor: pointer;
 }
 
-.author{
+/* .author{
     color: rgba(255, 255, 255, 0.641);
     font-size: 14px;
+} */
+
+.author {
+
+    color: #60a5fa;
+
+    font-size: 0.9rem;
+
+    text-decoration: none;
+
+    font-weight: 600;
 }
