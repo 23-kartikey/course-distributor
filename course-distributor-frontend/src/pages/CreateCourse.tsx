@@ -3,9 +3,17 @@ import type{ CourseForm } from "../types/course";
 import { postCourse } from "../services/CourseService";
 import "../styles/CourseForm.css";
 
+type CreateCourseForm = {
+    name: string,
+    shortDescription: string,
+    description: string
+}
+
 const CreateCourse = () =>{
+
+    const [thumbnail, setThumbnail] = useState<File | null>(null);
     
-    const [course, setCourse] = useState<CourseForm>({
+    const [course, setCourse] = useState<CreateCourseForm>({
         name: '',
         shortDescription: '',
         description: ''
@@ -14,8 +22,6 @@ const CreateCourse = () =>{
     const [loading, setLoading] = useState(false);
 
     const [error, setError] = useState('');
-
-
 
     
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,11 +44,23 @@ const CreateCourse = () =>{
 
             try{
                 setLoading(true);
-                const response = await postCourse(course);
+                
+                const formData = new FormData();
+
+                formData.append("name", course.name);
+                
+                formData.append("shortDescription", course.shortDescription);
+                
+                formData.append("description", course.description);
+                
+                if(thumbnail){
+                    formData.append("thumbnail", thumbnail);
+                }
+
+                const response = await postCourse(formData);
+                
                 console.log("Course created: ", response.name);
-                setCourse({
-                    name: '', shortDescription: '', description: ''
-                });
+
                 alert("Course created");
             }
             catch(error){
@@ -82,6 +100,15 @@ const CreateCourse = () =>{
                     value={course.description}
                     onChange={(e)=>setCourse(prev=>({...prev, description: e.target.value}))}
                     name="description"
+                />
+                <input 
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => {
+                        if(e.target.files){
+                            setThumbnail(e.target.files[0]);
+                        }
+                    }}
                 />
                 {
                     error && <p className="error">{error}</p>
