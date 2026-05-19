@@ -34,6 +34,8 @@ public class Course{
 
     private String description;
 
+    private String thumbnailUrl;
+
     @ManyToOne
     @JoinColumn(name = "author_id")
     private User author;
