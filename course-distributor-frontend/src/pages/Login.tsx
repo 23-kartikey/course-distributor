@@ -49,7 +49,7 @@ const Login = () => {
                 <button type="submit">Login</button>
                 </div>
                 <p>New here? Click <a href="/register">here</a> to register</p>
-                {fail && <p style={{"color" : "red"}}>Unable to register</p>}
+                {fail && <p style={{"color" : "red"}}>Unable to login</p>}
                 {success && <p style={{"color": "green"}}>Registered Successfully!</p>}
             </form>
         </div>

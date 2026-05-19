@@ -6,7 +6,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -27,8 +30,23 @@ public class Course{
 
     private String name;
 
+    private String shortDescription;
+
     private String description;
 
+    private String thumbnailUrl;
+
+    @ManyToOne
+    @JoinColumn(name = "author_id")
+    private User author;
+
+    @ManyToMany
+    @JoinTable(
+        name="course_students",
+        joinColumns=@JoinColumn(name = "course_id"),
+        inverseJoinColumns=@JoinColumn(name = "student_id")
+    )
+    private Set<User> students;
 
     @ManyToMany(mappedBy="likedCourses")
     private Set<User> likes;

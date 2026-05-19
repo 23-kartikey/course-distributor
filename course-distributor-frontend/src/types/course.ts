@@ -1,10 +1,15 @@
 export type Course = {
     id: number,
     name: string,
-    description: string
+    shortDescription: string,
+    thumbnailUrl?: string
 };
 
-export type CreateCourse = {
+
+
+export type CourseForm = {
     name: string,
-    description: string
+    shortDescription: string,
+    description: string,
+    thumbnail: File
 }
