@@ -55,10 +55,6 @@
     color: white;
 }
 
-.author{
-    font-size: 14px;
-}
-
 .course-content {
 
     padding: 1.2rem;
@@ -114,4 +110,9 @@
     color: white;
 
     cursor: pointer;
+}
+
+.author{
+    color: rgba(255, 255, 255, 0.641);
+    font-size: 14px;
 }
