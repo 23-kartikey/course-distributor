@@ -14,11 +14,17 @@ export const getCourses = async (page: number):Promise<PageResponse<Course>> => 
     return response.data;
 }
 
-export const postCourse = async( course : CourseForm ):Promise<Course> => {
+export const postCourse = async( formData: FormData ):Promise<Course> => {
     
     const response = await API.post(
         "courses/new",
-        course
+        formData,
+        {
+            headers: {
+                "Content-Type":
+                    "multipart/form-data"
+            }
+        }
     )
 
     return response.data;
