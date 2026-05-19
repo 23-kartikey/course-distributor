@@ -6,7 +6,8 @@ export type Course = {
 
 
 
-export type CreateCourse = {
+export type CourseForm = {
     name: string,
+    shortDescription: string,
     description: string
 }
