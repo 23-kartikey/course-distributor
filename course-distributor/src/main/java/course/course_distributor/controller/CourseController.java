@@ -22,7 +22,7 @@ import course.course_distributor.service.CourseService;
 
 @RestController
 @CrossOrigin(origins="http://localhost:5173")
-@RequestMapping
+@RequestMapping("/courses")
 public class CourseController {
 
     private static final Logger logger = LoggerFactory.getLogger(CourseController.class);
@@ -30,12 +30,7 @@ public class CourseController {
     @Autowired
     private CourseService service;
 
-    @GetMapping("public/courses")
-    public ResponseEntity<Page<CourseResponse>> getCourses(Pageable pageable){
-        return ResponseEntity.ok(service.getCourses(pageable));
-    }
-
-    @PostMapping("/courses/new")
+    @PostMapping("/new")
     public ResponseEntity<CourseResponse> newCourse(@RequestBody CourseRequest req,
                                     @AuthenticationPrincipal CustomUserDetails userDetails){
         logger.info("=============REQUEST INSIDE CONTROLLER=============");
