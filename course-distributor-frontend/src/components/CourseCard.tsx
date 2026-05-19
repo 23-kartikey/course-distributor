@@ -14,6 +14,7 @@ const CourseCard = ({course}:CourseCardProps) => {
             </div>
             <div className = "course-content">
                 <p>{course.shortDescription}</p>
+                <p className="author">Author</p>
             </div>
         </a>
     )
