@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import course.course_distributor.dto.CourseRequest;
 import course.course_distributor.dto.CourseResponse;
+import course.course_distributor.security.CustomUserDetails;
 import course.course_distributor.service.CourseService;
 
 @RestController
@@ -30,8 +32,9 @@ public class CourseController {
     }
 
     @PostMapping("/courses/new")
-    public ResponseEntity<CourseResponse> newCourse(@RequestBody CourseRequest req){
-        return ResponseEntity.status(201).body(service.newCourse(req));
+    public ResponseEntity<CourseResponse> newCourse(@RequestBody CourseRequest req,
+                                    @AuthenticationPrincipal CustomUserDetails userDetails){
+        return ResponseEntity.status(201).body(service.newCourse(req, userDetails.getUser()));
     }
     
 }
