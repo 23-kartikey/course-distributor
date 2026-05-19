@@ -61,6 +61,10 @@ const CreateCourse = () =>{
                 console.log("Course created: ", response.name);
 
                 alert("Course created");
+                setCourse({
+                    name: '', shortDescription: '', description: ''
+                });
+                setThumbnail(null);
             }
             catch(error){
                 setError("Failed to create course");
@@ -122,7 +126,7 @@ const CreateCourse = () =>{
                 {
                     error && <p className="error">{error}</p>
                 }
-                <button>{loading?"Creaing...":"Create"}</button>
+                <button>{loading?"Creating...":"Create"}</button>
             </form>
         </div>
     );
