@@ -39,7 +39,16 @@
     font-weight: 600;
 }
 
-.auth-group input {
+/* .auth-group input {
+    padding: 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    font-weight: 549;
+} */
+
+.input{
     padding: 14px;
     border: 1px solid #d1d5db;
     border-radius: 8px;
@@ -48,7 +57,7 @@
     font-weight: 549;
 }
 
-.auth-group input:focus{
+.input:focus{
     border-color: #1f0536;
 }
 
@@ -66,4 +75,32 @@
 
 .auth-group button:hover{
     background-color: #000000e9;
+}
+
+.valid-username{
+    padding: 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    font-weight: 549;
+    border: 2px solid green;
+}
+
+.invalid-username{
+    padding: 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    font-weight: 549;
+    border: 2px solid red;
+}
+
+.invalid-message{
+    color: rgb(217, 13, 13)
+}
+
+.valid-message{
+    color: green;
 }
