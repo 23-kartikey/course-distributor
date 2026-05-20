@@ -97,6 +97,7 @@ public class AuthServiceImpl implements AuthService{
         User user = User.builder()
                         .email(req.email())
                         .password(passwordEncoder.encode(req.password()))
+                        .username(req.username())
                         .roles(Set.of(role))
                         .build();
 
