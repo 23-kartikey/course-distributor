@@ -30,12 +30,10 @@ const Register = () => {
             const response = await checkUsername(registerForm.username);
             setValid(response);
         }
-        if(registerForm.username.length>3){
-        setShow(true);
-        validateUsername();
-    }
-
-
+            if(registerForm.username.length>3){
+                setShow(true);
+                validateUsername();
+            }
     }, [registerForm.username]);
 
 
@@ -71,8 +69,8 @@ const Register = () => {
                     :(<input className="invalid-username" type="text" value={registerForm.username} onChange={handleChange} name="username" />)
                 ):(<input className="input" type="text" value={registerForm.username} onChange={handleChange} name="username" />)
                 }  
-                {valid ?  <p className="valid-message">Username valid✅</p> 
-                        : <p className="invalid-message">Invalid Username❌</p>}
+                {show && (valid ?  <p className="valid-message">Username valid✅</p> 
+                        : <p className="invalid-message">Invalid Username❌</p>)}
                 <button disabled={!valid} type="submit">Register</button>
                 </div>
                 <p>Already a user? Click <a href="/login">here</a> to login</p>
