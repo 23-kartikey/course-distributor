@@ -8,5 +8,5 @@ public interface AuthService {
     
     public TokenResponse login(LoginRequest req);
     public TokenResponse register(RegisterRequest req);
-
+    public Boolean checkUsername(String username);
 }
