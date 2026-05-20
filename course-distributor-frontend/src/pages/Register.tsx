@@ -1,15 +1,17 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import type { RegisterForm } from "../types/auth";
-import { register } from "../services/AuthService";
+import { register, checkUsername } from "../services/AuthService";
 import "../styles/Auth.css";
 
 const Register = () => {
 
     const navigate = useNavigate();
-    const [registerForm, setRegisterForm] = useState<RegisterForm>({ email:'', password:''});
+    const [registerForm, setRegisterForm] = useState<RegisterForm>({ email:'', password:'', username: ''});
     const [success, setSuccess] = useState(false);
     const [fail, setFail] = useState(false);
+    const [valid, setValid] = useState(false);
+    const [submitted, setSubmitted] = useState(false);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 
@@ -22,6 +24,12 @@ const Register = () => {
 
     }
 
+    const checkUsername = (e: React.ChangeEvent<HTMLInputElement>) => {
+
+        const response = checkUsername(e.target.);
+
+    }
+
     const handleSubmit= async(e: React.SubmitEvent<HTMLFormElement>) => {
 
         e.preventDefault();
@@ -30,7 +38,7 @@ const Register = () => {
             await register(registerForm);
             setSuccess(true);
             console.log("Registration Successfull!");
-            navigate("/register-details");
+            navigate("/");
         }
         catch(error){
             setFail(true);
@@ -48,6 +56,9 @@ const Register = () => {
                 <input type="text" value={registerForm.email} onChange={handleChange} name="email" />
                 <label>Password</label>
                 <input type="password" value={registerForm.password} onChange={handleChange} name="password" />
+
+                <input type="text" value={registerForm.username} onChange={checkUsername} name="username" />
+
                 <button type="submit">Register</button>
                 </div>
                 <p>Already a user? Click <a href="/login">here</a> to login</p>
