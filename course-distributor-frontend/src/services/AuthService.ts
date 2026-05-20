@@ -27,3 +27,8 @@ export const getToken = () => {
 export const isLoggedIn = () => {
     return !!getToken();
 }
+
+export const checkUsername = async(username:string):Promise<boolean> => {
+    const response = await API.get(`auth/check?username=${username}`);
+    return response.data;
+}
