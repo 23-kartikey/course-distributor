@@ -84,6 +84,12 @@ public class AuthServiceImpl implements AuthService{
 
     }
 
+    @Override
+    public Boolean checkUsername(String username){
+        logger.info("Validating username: ", username);
+        return !userRepo.existsByUsername(username);
+    }
+
     private void registerUser(RegisterRequest req){
         
         Role role = roleRepo.findByName("USER");
