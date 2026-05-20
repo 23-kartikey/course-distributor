@@ -43,9 +43,9 @@ const Login = () => {
                 <h1 className="auth-title">Login</h1>
                 <div className="auth-group">
                 <label>Email/Username</label>
-                <input type="text" value={loginForm.usernameOrEmail} onChange={handleChange} name="usernameOrEmail" />
+                <input className="input" type="text" value={loginForm.usernameOrEmail} onChange={handleChange} name="usernameOrEmail" />
                 <label>Password</label>
-                <input type="password" value={loginForm.password} onChange={handleChange} name="password" />
+                <input className="input" type="password" value={loginForm.password} onChange={handleChange} name="password" />
                 <button type="submit">Login</button>
                 </div>
                 <p>New here? Click <a href="/register">here</a> to register</p>
