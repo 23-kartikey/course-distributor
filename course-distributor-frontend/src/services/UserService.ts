@@ -1,7 +1,7 @@
 import API from "./api";
-import type { DetailsFormType } from "../types/auth";
+import type { UserProfileType } from "../types/user";
 
-export const getUserProfile = async(id: number) => {
+export const getUserProfile = async(id: number):Promise<UserProfileType> => {
 
     const response = await API.get(`public/user/${id}`);
     console.log("Profile fetched");
