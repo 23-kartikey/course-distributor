@@ -4,7 +4,13 @@ import { getUserProfile } from "../services/UserService";
 
 const Profile = () => {
 
-    const [profile, setProfile] = useState<UserProfileType | null>(null);
+    const [profile, setProfile] = useState<UserProfileType>(
+        {
+            username: '',
+            name: '',
+            about: ''
+        }
+    );
 
     useEffect(() => {
         const fetchUserProfile = async() => {
@@ -22,7 +28,11 @@ const Profile = () => {
         <div>
             <div></div>
             <div>
-
+                <h3>{profile.username}</h3>
+                <br />
+                <h4>{profile.name}</h4>
+                <br />
+                <p>{profile.about}</p>
             </div>
         </div>
     );
