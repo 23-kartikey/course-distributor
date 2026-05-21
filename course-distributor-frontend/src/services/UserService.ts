@@ -3,7 +3,7 @@ import type { UserProfileType } from "../types/user";
 
 export const getUserProfile = async():Promise<UserProfileType> => {
 
-    const response = await API.get(`user/profile`);
+    const response = await API.get("user/profile");
     console.log("Profile fetched");
     return response.data;
 
