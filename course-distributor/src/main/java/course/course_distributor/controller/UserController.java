@@ -5,7 +5,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,17 +15,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import course.course_distributor.dto.DetailsRequest;
+import course.course_distributor.dto.UserProfileResponse;
+import course.course_distributor.security.CustomUserDetails;
 import course.course_distributor.service.UserService;
 
 @RestController
 @CrossOrigin(origins="http://localhost:5173")
-@RequestMapping("user")
+@RequestMapping("/user")
 public class UserController {
 
     Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
     private UserService service;
+
+    @GetMapping("/profile")
+    public ResponseEntity<UserProfileResponse> getProfile(@AuthenticationPrincipal CustomUserDetails userDetails){
+        ResponseEntity.ok(service.getUserProfile(userDetails.getUsername()));
+    }
 
     @PutMapping("/details/{id}")
     public ResponseEntity<Void> fillDetails(@RequestBody DetailsRequest req, @PathVariable Long id){
