@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,8 +31,12 @@ public class UserController {
     private UserService service;
 
     @GetMapping("/profile")
-    public ResponseEntity<UserProfileResponse> getProfile(@AuthenticationPrincipal CustomUserDetails userDetails){
-        return ResponseEntity.ok(service.getUserProfile(userDetails.getUsername()));
+    public ResponseEntity<UserProfileResponse> getProfile(Authentication authentication){
+        logger.info("======IN GETPROFILE CONTROLLER METHOD==============");
+        logger.info("AUTH: {}", authentication);
+        logger.info("PRINCIPAL CLASS: {}",
+            authentication.getPrincipal().getClass());
+        return ResponseEntity.ok(service.getUserProfile(authentication.getName()));
     }
 
     @PutMapping("/details/{id}")
