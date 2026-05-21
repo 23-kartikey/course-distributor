@@ -22,10 +22,13 @@ const Profile = () => {
                 console.log("Couldn't fetch profile: ", error);
             }
         }
+
+        fetchUserProfile();
     }, []);
 
     return(
         <div>
+            <h1>User Profile</h1>
             <div></div>
             <div>
                 <h3>{profile.username}</h3>
@@ -38,3 +41,5 @@ const Profile = () => {
     );
 
 }
+
+export default Profile;
