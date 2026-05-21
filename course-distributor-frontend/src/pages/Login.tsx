@@ -1,13 +1,21 @@
 import { useState } from "react";
 import type { LoginForm } from "../types/auth";
-import { login } from "../services/AuthService";
+import { loginUser } from "../services/AuthService";
 import "../styles/Auth.css";
+import { useAuth } from "../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
 
+    const {isAuthenticated, login} = useAuth();
     const [success, setSuccess] = useState(false);
     const [fail, setFail] = useState(false);
     const [loginForm, setLoginForm] = useState<LoginForm>({ usernameOrEmail:'', password:''});
+    const navigate = useNavigate();
+
+    if(isAuthenticated){
+        navigate("/");
+    }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 
@@ -25,7 +33,8 @@ const Login = () => {
         e.preventDefault();
 
         try{
-            await login(loginForm);
+            const response = await loginUser(loginForm);
+            login(response.token);
             console.log("Successful Login!");
             setSuccess(true);
             window.location.href = "/";
