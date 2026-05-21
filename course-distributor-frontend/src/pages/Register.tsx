@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import type { RegisterForm } from "../types/auth";
-import { register, checkUsername } from "../services/AuthService";
+import { register, checkUsername, isLoggedIn } from "../services/AuthService";
 import "../styles/Auth.css";
 
 const Register = () => {
 
     const navigate = useNavigate();
+
+    if(isLoggedIn()) navigate("/");
+
     const [registerForm, setRegisterForm] = useState<RegisterForm>({ email:'', password:'', username: ''});
     const [success, setSuccess] = useState(false);
     const [fail, setFail] = useState(false);
@@ -30,10 +33,11 @@ const Register = () => {
             const response = await checkUsername(registerForm.username);
             setValid(response);
         }
-            if(registerForm.username.length>3){
-                setShow(true);
-                validateUsername();
-            }
+        if(registerForm.username.length>0){
+            setShow(true);
+            validateUsername();
+        }
+        if(registerForm.username.length==0) setValid(false);
     }, [registerForm.username]);
 
 
