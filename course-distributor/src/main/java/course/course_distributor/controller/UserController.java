@@ -31,7 +31,7 @@ public class UserController {
 
     @GetMapping("/profile")
     public ResponseEntity<UserProfileResponse> getProfile(@AuthenticationPrincipal CustomUserDetails userDetails){
-        ResponseEntity.ok(service.getUserProfile(userDetails.getUsername()));
+        return ResponseEntity.ok(service.getUserProfile(userDetails.getUsername()));
     }
 
     @PutMapping("/details/{id}")
