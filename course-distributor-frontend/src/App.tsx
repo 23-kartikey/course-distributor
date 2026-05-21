@@ -6,7 +6,7 @@ import Home from "./pages/Home";
 import Courses from "./pages/Courses";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import DetailsForm from "./pages/DetailsForm";
+import Profile from "./pages/Profile";
 
 const App = () => {
     return(
@@ -17,7 +17,7 @@ const App = () => {
                 <Route path="/courses" element={<Courses />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
-                <Route path="/register-details" element={<DetailsForm />} />
+                <Route path="/profile-user" element={<Profile />} />
                 <Route path="/create-course" element={<CreateCourse />} />
             </Routes>
         </BrowserRouter>
