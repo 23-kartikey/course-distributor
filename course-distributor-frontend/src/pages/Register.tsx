@@ -1,14 +1,17 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import type { RegisterForm } from "../types/auth";
-import { register, checkUsername, isLoggedIn } from "../services/AuthService";
+import { useAuth } from "../contexts/AuthContext";
+import { register, checkUsername } from "../services/AuthService";
 import "../styles/Auth.css";
 
 const Register = () => {
 
+    const { isAuthenticated, login } = useAuth();
+
     const navigate = useNavigate();
 
-    if(isLoggedIn()) navigate("/");
+    if(isAuthenticated) navigate("/");
 
     const [registerForm, setRegisterForm] = useState<RegisterForm>({ email:'', password:'', username: ''});
     const [success, setSuccess] = useState(false);
@@ -46,8 +49,9 @@ const Register = () => {
         e.preventDefault();
 
         try{
-            await register(registerForm);
+            const response = await register(registerForm);
             setSuccess(true);
+            login(response.token);
             console.log("Registration Successfull!");
             navigate("/");
         }
