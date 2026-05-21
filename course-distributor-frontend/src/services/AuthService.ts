@@ -1,5 +1,4 @@
 import type { RegisterForm, LoginForm } from "../types/auth";
-import { useAuth } from "../contexts/AuthContext";
 import API from "./api";
 
 export const register = async(credentials:RegisterForm) => {
