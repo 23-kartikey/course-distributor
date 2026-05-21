@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { logout } from "../services/AuthService";
+import { logout, isLoggedIn } from "../services/AuthService";
 import Search from "./Search";
 import "../styles/Navbar.css";
 
@@ -11,11 +11,9 @@ const Navbar = () => {
     const isAuthPage = location.pathname === "/login" || 
                        location.pathname === "/register";
 
-    const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
 
     const handleLogout = () => {
         logout();
-        setIsLoggedIn(false);
         window.location.href="/";
     }
 
@@ -27,7 +25,7 @@ const Navbar = () => {
             <Link className="nav-link" to="/courses">Courses</Link>
             <Link className="nav-link" to="/create-course">Create Course</Link>
             { !isAuthPage && 
-                (isLoggedIn ? (<button className="nav-link" onClick={handleLogout} >Logout</button>)
+                (isLoggedIn() ? (<button className="nav-link" onClick={handleLogout} >Logout</button>)
                     :(<Link className="nav-link" to="/login">Login/Register</Link>)
                     )}
         </nav>
