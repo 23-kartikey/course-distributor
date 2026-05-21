@@ -5,6 +5,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import course.course_distributor.dto.DetailsRequest;
+import course.course_distributor.dto.UserProfileResponse;
 import course.course_distributor.entity.User;
 import course.course_distributor.repository.UserRepository;
 
@@ -24,6 +25,11 @@ public class UserService {
 
         userRepo.save(user);
 
+    }
+
+    public UserProfileResponse getUserProfile(String username){
+        User user = userRepo.findUserByUsername(username).orElseThrow(()->new UsernameNotFoundException(username));
+        return new UserProfileResponse(user.getUsername(), user.getFirstName()+user.getLastName(), user.getAbout());
     }
 
 }
