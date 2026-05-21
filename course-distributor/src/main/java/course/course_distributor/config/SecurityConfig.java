@@ -45,6 +45,7 @@ public class SecurityConfig {
                 auth.requestMatchers("/public/**").permitAll();
                 auth.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll();
                 auth.requestMatchers("/uploads/**").permitAll();
+                auth.requestMatchers("/error").permitAll();
                 auth.anyRequest().authenticated();
             });
 
