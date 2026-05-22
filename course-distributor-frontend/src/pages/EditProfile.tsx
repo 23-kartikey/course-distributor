@@ -39,7 +39,7 @@ const EditProfile = () => {
                     <label>About</label>
                     <input value={profile.about} onChange={handleChange} />
                 </div>
-                <button>Save changes</button>
+                <button type="submit">Save changes</button>
             </form>
         </div>
     );
