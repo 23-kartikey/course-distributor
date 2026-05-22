@@ -79,3 +79,7 @@
 
     transition: 0.2s;
 }
+
+.profile-header button:hover{
+    background-color: #1877f2;
+}
