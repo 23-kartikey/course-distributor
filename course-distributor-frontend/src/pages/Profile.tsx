@@ -2,8 +2,11 @@ import { useEffect, useState } from "react";
 import type { UserProfileType } from "../types/user";
 import { getUserProfile } from "../services/UserService";
 import "../styles/Profile.css";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
+
+    const navigate = useNavigate();
 
     const [profile, setProfile] = useState<UserProfileType>(
         {
@@ -40,7 +43,7 @@ const Profile = () => {
                     <div className="profile-info">
                         <div className="profile-header">
                             <h2>{profile.username}</h2>
-                            <button>Edit Profile</button>
+                            <button onClick={()=>navigate("/edit-profile")}>Edit Profile</button>
                         </div>
                         <div className="profile-stats">
                             <div>
