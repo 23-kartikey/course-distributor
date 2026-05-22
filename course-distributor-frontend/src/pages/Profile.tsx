@@ -33,7 +33,7 @@ const Profile = () => {
                 <div className="profile-top">
                     <div className="profile-image">
                         <img 
-                            src=""
+                            src="https://legal-services-uae.com/wp-content/uploads/2024/09/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg"
                             alt="profile"
                         />
                     </div>
