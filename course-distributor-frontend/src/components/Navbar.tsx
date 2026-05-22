@@ -26,6 +26,7 @@ const Navbar = () => {
             <Link className="nav-link" to="/">Home</Link>
             <Link className="nav-link" to="/courses">Courses</Link>
             <Link className="nav-link" to="/create-course">Create Course</Link>
+            <Link className="nav-link" to="/profile-user">Profile</Link>
             { !isAuthPage && 
                 (isAuthenticated ? (<button className="nav-link" onClick={handleLogout} >Logout</button>)
                     :(<Link className="nav-link" to="/login">Login/Register</Link>)
