@@ -15,7 +15,7 @@ const EditProfile = () => {
 
     return(
         <div>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div>
                     <img />
                      <input 
@@ -39,7 +39,7 @@ const EditProfile = () => {
                     <label>About</label>
                     <input value={profile.about} onChange={handleChange} />
                 </div>
-                <button onClick={handleSubmit}>Save changes</button>
+                <button>Save changes</button>
             </form>
         </div>
     );
