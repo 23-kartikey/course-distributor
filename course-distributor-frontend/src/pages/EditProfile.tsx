@@ -30,8 +30,14 @@ const EditProfile = () => {
                      />
                 </div>
                 <div>
-                    
+                    <label>Name</label>
+                    <input value={profile.name} onChange={handleChange} />
 
+                    <label>Username</label>
+                    <input value={profile.username} onChange={checkUsername} />
+
+                    <label>About</label>
+                    <input value={profile.about} onChange={handleChange} />
                 </div>
             </form>
         </div>
