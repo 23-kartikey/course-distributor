@@ -26,6 +26,27 @@ const EditProfile = () => {
 
     }
 
+    const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+
+        const editProfile = () => {
+            try{
+                const formData = new FormData();
+                formData.append("name", profile.name);
+                formData.append("username", profile.username);
+                formData.append("about", profile.about);
+                if(profilePhoto){
+                    formData.append("profilePhoto", profilePhoto);
+                }
+
+
+            }
+            catch(error){
+                console.log("Error while saving information: ", error);
+            }
+        }
+
+    }
+
 
 
     useEffect(()=>{
