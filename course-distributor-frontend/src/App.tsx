@@ -7,6 +7,7 @@ import Courses from "./pages/Courses";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
+import EditProfile from "./pages/EditProfile";
 
 const App = () => {
     return(
@@ -19,6 +20,7 @@ const App = () => {
                 <Route path="/register" element={<Register />} />
                 <Route path="/profile-user" element={<Profile />} />
                 <Route path="/create-course" element={<CreateCourse />} />
+                <Route path="/edit-profile" element={<EditProfile />} />
             </Routes>
         </BrowserRouter>
     );
