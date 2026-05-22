@@ -8,3 +8,19 @@ export const getUserProfile = async():Promise<UserProfileType> => {
     return response.data;
 
 }
+
+export const editUserProfile = async(formData:FormData):Promise<UserProfileType> => {
+
+    const response = await API.put(
+        "user/edit",
+        formData,
+        {
+            headers:{
+                "Content-Type":"mutlipart/form-data"
+            }
+        }
+    );
+
+    return response.data;
+
+}
