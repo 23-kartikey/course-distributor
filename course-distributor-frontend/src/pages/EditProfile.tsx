@@ -1,5 +1,6 @@
-import { useState } from "react"
-import type { UserProfileType } from "../types/user"
+import { useEffect, useState } from "react";
+import type { UserProfileType } from "../types/user";
+import { getUserProfile } from "../services/UserService";
 
 const EditProfile = () => {
 
@@ -12,6 +13,23 @@ const EditProfile = () => {
     );
 
     const [profilePhoto, setProfilePhoto] = useState<File | null>(null);
+
+    useEffect(()=>{
+
+        const fetchInfo = async() => {
+            try{
+                const response = await getUserProfile();
+                setProfile(response);
+            }
+            catch(error){
+                console.log("Error while loading profile info: ", error);
+            }
+
+        }
+
+        fetchInfo();
+
+    }, []);
 
     return(
         <div>
