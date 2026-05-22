@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import type { UserProfileType } from "../types/user";
 import { getUserProfile } from "../services/UserService";
+import "../styles/Profile.css";
 
 const Profile = () => {
 
