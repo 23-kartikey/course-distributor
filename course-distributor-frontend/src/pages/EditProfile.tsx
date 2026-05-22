@@ -54,8 +54,18 @@ const EditProfile = () => {
 
     useEffect(()=>{
         const validateUsername = async() => {
-            const response = await checkUsername(profile.username);
-            setValid(response);
+            try{
+                if(profile.username === localStorage.getItem("username")){
+                    setValid(true);
+                }
+                else{
+                    const response = await checkUsername(profile.username);
+                    setValid(response);
+                }
+            }
+            catch(error){
+                console.log("Unable to validate username", error);
+            }
         }
         validateUsername();
     }, [profile.username]);
@@ -66,6 +76,7 @@ const EditProfile = () => {
             try{
                 const response = await getUserProfile();
                 setProfile(response);
+                localStorage.setItem("username", response.username);
             }
             catch(error){
                 console.log("Error while loading profile info: ", error);
@@ -103,7 +114,7 @@ const EditProfile = () => {
                     <label>About</label>
                     <input name="about" value={profile.about} onChange={handleChange} />
                 </div>
-                <button type="submit">Save changes</button>
+                <button disabled={!valid} type="submit">Save changes</button>
             </form>
         </div>
     );
