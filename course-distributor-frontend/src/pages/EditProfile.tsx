@@ -14,6 +14,20 @@ const EditProfile = () => {
 
     const [profilePhoto, setProfilePhoto] = useState<File | null>(null);
 
+    const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+
+        const {name, value} = e.target;
+
+        setProfile(prev=>(
+            {
+                ...prev, [name]:value
+            }
+        ))
+
+    }
+
+
+
     useEffect(()=>{
 
         const fetchInfo = async() => {
