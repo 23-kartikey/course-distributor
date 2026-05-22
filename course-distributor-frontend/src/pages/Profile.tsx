@@ -31,25 +31,33 @@ const Profile = () => {
             <div>
                 <div>
                     <div>
-
+                        <img 
+                            src=""
+                            alt="profile"
+                        />
                     </div>
                     <div>
                         <div>
-
+                            <h2>{profile.username}</h2>
+                            <button>Edit Profile</button>
                         </div>
                         <div>
                             <div>
-
+                                <span>12</span>
+                                <p>Posts</p>
                             </div>
                             <div>
-
+                                <span>540</span>
+                                <p>Followers</p>
                             </div>
                             <div>
-
+                                <span>180</span>
+                                <p>Following</p>
                             </div>
                         </div>
                         <div>
-                            
+                            <h4>{profile.name}</h4>
+                            <p>{profile.about}</p>
                         </div>
                     </div>
                 </div>
