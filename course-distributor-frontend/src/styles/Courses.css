@@ -206,6 +206,24 @@
     color: white;
 
     cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.pagination button:hover{
+    transform: translateY(-1px);
+    background: #131921;
+}
+
+.pagination span{
+    
+    padding: 10px;
+
+
+    background-color: rgb(177, 184, 190);
+
+    border-radius: 10px;
+
 }
 
 /* .author{
