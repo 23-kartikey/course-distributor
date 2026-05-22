@@ -39,6 +39,7 @@ const EditProfile = () => {
                     <label>About</label>
                     <input value={profile.about} onChange={handleChange} />
                 </div>
+                <button onClick={handleSubmit}>Save changes</button>
             </form>
         </div>
     );
