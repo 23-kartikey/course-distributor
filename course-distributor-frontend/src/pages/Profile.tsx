@@ -28,14 +28,31 @@ const Profile = () => {
 
     return(
         <div>
-            <h1>User Profile</h1>
-            <div></div>
             <div>
-                <h3>{profile.username}</h3>
-                <br />
-                <h4>{profile.name}</h4>
-                <br />
-                <p>{profile.about}</p>
+                <div>
+                    <div>
+
+                    </div>
+                    <div>
+                        <div>
+
+                        </div>
+                        <div>
+                            <div>
+
+                            </div>
+                            <div>
+
+                            </div>
+                            <div>
+
+                            </div>
+                        </div>
+                        <div>
+                            
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );
