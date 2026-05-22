@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import type { UserProfileType } from "../types/user";
 import { getUserProfile } from "../services/UserService";
+import { checkUsername } from "../services/AuthService";
 
 const EditProfile = () => {
+
+    const [valid, setValid]=useState(true);
 
     const [profile, setProfile] = useState<UserProfileType>(
         {
@@ -28,6 +31,8 @@ const EditProfile = () => {
 
     const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
 
+        e.preventDefault();
+
         const editProfile = () => {
             try{
                 const formData = new FormData();
@@ -47,7 +52,13 @@ const EditProfile = () => {
 
     }
 
-
+    useEffect(()=>{
+        const validateUsername = async() => {
+            const response = await checkUsername(profile.username);
+            setValid(response);
+        }
+        validateUsername();
+    })
 
     useEffect(()=>{
 
@@ -84,13 +95,13 @@ const EditProfile = () => {
                 </div>
                 <div>
                     <label>Name</label>
-                    <input value={profile.name} onChange={handleChange} />
+                    <input name="name" value={profile.name} onChange={handleChange} />
 
                     <label>Username</label>
-                    <input value={profile.username} onChange={checkUsername} />
+                    <input name = "username" value={profile.username} onChange={handleChange} />
 
                     <label>About</label>
-                    <input value={profile.about} onChange={handleChange} />
+                    <input name="about" value={profile.about} onChange={handleChange} />
                 </div>
                 <button type="submit">Save changes</button>
             </form>
