@@ -58,7 +58,7 @@ const EditProfile = () => {
             setValid(response);
         }
         validateUsername();
-    })
+    }, [profile.username]);
 
     useEffect(()=>{
 
