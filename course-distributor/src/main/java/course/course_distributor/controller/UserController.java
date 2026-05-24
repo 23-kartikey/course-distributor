@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import course.course_distributor.dto.DetailsRequest;
 import course.course_distributor.dto.UserProfileResponse;
@@ -39,15 +41,16 @@ public class UserController {
         return ResponseEntity.ok(service.getUserProfile(authentication.getName()));
     }
 
-    @PutMapping("/details/{id}")
-    public ResponseEntity<Void> fillDetails(@RequestBody DetailsRequest req, @PathVariable Long id){
+    @PutMapping("/edit")
+    public ResponseEntity<String> editProfile(@RequestParam String firstName,
+                                            @RequestParam String lastName,
+                                            @RequestParam String username,
+                                            @RequestParam String about,
+                                            @RequestParam MultipartFile profilePicture
+                                            ){
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.editProfile(firstName, lastName, username, about, profilePicture));                                          
+                                            }
 
-        logger.info("======IN FILLDETAILS CONTROLLER METHOD");
-
-        service.fillDetails(req, id);
-
-        return ResponseEntity.status(HttpStatus.CREATED).build();
-
-    }
+    
 
 }
