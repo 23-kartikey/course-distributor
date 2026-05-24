@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { UserProfileType } from "../types/user";
-import { getUserProfile } from "../services/UserService";
+import { editUserProfile, getUserProfile } from "../services/UserService";
 import { checkUsername } from "../services/AuthService";
 
 const EditProfile = () => {
@@ -33,7 +33,7 @@ const EditProfile = () => {
 
         e.preventDefault();
 
-        const editProfile = () => {
+        const editProfile = async() => {
             try{
                 const formData = new FormData();
                 formData.append("name", profile.name);
@@ -42,6 +42,10 @@ const EditProfile = () => {
                 if(profilePhoto){
                     formData.append("profilePhoto", profilePhoto);
                 }
+
+                const response = await editUserProfile(formData);
+
+                setProfile(response);
 
 
             }
