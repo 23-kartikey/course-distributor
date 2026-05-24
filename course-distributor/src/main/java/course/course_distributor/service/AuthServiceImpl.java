@@ -59,6 +59,8 @@ public class AuthServiceImpl implements AuthService{
 
         String token = tokenProvider.generateToken(authentication);
 
+        logger.info("=============User Logged In: {}", authentication.getName());
+
         return new TokenResponse(token, authentication.getName());
     }
 
@@ -80,7 +82,9 @@ public class AuthServiceImpl implements AuthService{
 
         String token = tokenProvider.generateToken(authentication);
 
-        return new TokenResponse(token, req.email());
+        logger.info("=============User Logged In: {}", authentication.getName());
+
+        return new TokenResponse(token, req.username());
 
     }
 
