@@ -6,18 +6,23 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.UUID;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import course.course_distributor.dto.DetailsRequest;
+import course.course_distributor.dto.EditProfileResponse;
 import course.course_distributor.dto.UserProfileResponse;
 import course.course_distributor.entity.User;
 import course.course_distributor.repository.UserRepository;
 
 @Service
 public class UserService {
+
+    private final static Logger logger = LoggerFactory.getLogger(UserService.class);
 
     @Autowired
     private UserRepository userRepo;
@@ -36,11 +41,16 @@ public class UserService {
 
     public UserProfileResponse getUserProfile(String username){
         User user = userRepo.findByUsernameOrEmail(username, username).orElseThrow(()->new UsernameNotFoundException(username));
-        return new UserProfileResponse(user.getUsername(), user.getFirstName()+user.getLastName(), user.getAbout());
+        return new UserProfileResponse(user.getUsername(), user.getFirstName()+" "+user.getLastName(), user.getAbout(), user.getProfilePictureUrl());
     }
 
-    public UserProfileResponse editProfile(String usernameOrEmail, String firstName, String lastName, String username, String about, MultipartFile profilePicture)throws IOException{
+    public EditProfileResponse getEditProfile(String username){
+        User user = userRepo.findByUsernameOrEmail(username, username).orElseThrow(()->new UsernameNotFoundException(username));
+        return new EditProfileResponse(user.getFirstName(), user.getLastName(), user.getUsername(), user.getAbout());
+    }
 
+    public EditProfileResponse editProfile(String usernameOrEmail, String firstName, String lastName, String username, String about, MultipartFile profilePicture)throws IOException{
+        logger.info("++++Inside Edit Profile method++++++");
         String fileName = UUID.randomUUID() + "_"+profilePicture.getOriginalFilename();
         Path path = Paths.get("uploads", fileName);
 
@@ -58,8 +68,9 @@ public class UserService {
         user.setLastName(lastName);
         user.setAbout(about);
         user.setProfilePictureUrl("/uploads/"+fileName);
+        userRepo.save(user);
 
-        return new UserProfileResponse(user.getUsername(), user.getFirstName()+user.getLastName(), user.getAbout());
+        return new EditProfileResponse(user.getUsername(), user.getFirstName()+" "+user.getLastName(), user.getAbout(), user.getProfilePictureUrl());
 
     }
 
