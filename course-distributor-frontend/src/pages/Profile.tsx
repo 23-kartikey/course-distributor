@@ -12,7 +12,8 @@ const Profile = () => {
         {
             username: '',
             name: '',
-            about: ''
+            about: '',
+            profilePictureUrl: "https://legal-services-uae.com/wp-content/uploads/2024/09/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg"
         }
     );
 
@@ -20,6 +21,7 @@ const Profile = () => {
         const fetchUserProfile = async() => {
             try{
                 const response = await getUserProfile();
+                console.log(response);
                 setProfile(response);
             }
             catch(error){
@@ -36,7 +38,10 @@ const Profile = () => {
                 <div className="profile-top">
                     <div className="profile-image">
                         <img 
-                            src="https://legal-services-uae.com/wp-content/uploads/2024/09/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg"
+                            src = {
+                        `http://localhost:8080${profile.profilePictureUrl}`
+                    }
+
                             alt="profile"
                         />
                     </div>
