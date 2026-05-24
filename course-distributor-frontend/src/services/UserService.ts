@@ -16,7 +16,7 @@ export const editUserProfile = async(formData:FormData):Promise<UserProfileType>
         formData,
         {
             headers:{
-                "Content-Type":"mutlipart/form-data"
+                "Content-Type":"multipart/form-data"
             }
         }
     );
