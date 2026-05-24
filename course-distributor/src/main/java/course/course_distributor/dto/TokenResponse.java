@@ -1,5 +1,5 @@
 package course.course_distributor.dto;
 
-public record TokenResponse(String token){
+public record TokenResponse(String token, String username){
 
 }
