@@ -12,10 +12,10 @@ const EditProfile = () => {
 
     const [profile, setProfile] = useState<EditProfileType>(
         {
-            firstName: "",
-            lastName: "",
-            username: "",
-            about: ""        }
+            firstName: '',
+            lastName: '',
+            username: '',
+            about: ''        }
     );
 
     const [profilePhoto, setProfilePhoto] = useState<File | null>(null);
@@ -86,10 +86,14 @@ const EditProfile = () => {
             try{
                 const response = await getEditUserProfile();
                 console.log(response);
-                if(response.firstName!=null) setProfile({...profile, username: response.firstName});
-                if(response.lastName!=null) setProfile({...profile, lastName: response.lastName});
-                if(response.username!=null) setProfile({...profile, username: response.username});
-                if(response.about!=null) setProfile({...profile, about: response.about});
+                setProfile(prev=>({
+                    ...prev,
+                    ...(response.firstName!=null && {firstName: response.firstName}),
+                    ...(response.lastName!=null && {lastName: response.lastName}),
+                    ...(response.username!=null && {username:response.username}),
+                    ...(response.about!=null && {about: response.about})                    
+                }),
+            )
             }
             catch(error){
                 console.log("Error while loading profile info: ", error);
