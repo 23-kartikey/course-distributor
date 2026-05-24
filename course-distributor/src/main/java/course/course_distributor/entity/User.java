@@ -48,6 +48,9 @@ public class User{
     @Column( length = 300)
     private String about;
 
+    @Column
+    private String profilePictureUrl;
+
     @OneToMany(mappedBy = "author")
     private Set<Course> authoredCourses;
 
