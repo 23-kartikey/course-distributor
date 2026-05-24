@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import type { UserProfileType } from "../types/user";
-import { editUserProfile, getUserProfile } from "../services/UserService";
+import type { EditProfileType, UserProfileType } from "../types/user";
+import { editUserProfile, getEditUserProfile, getUserProfile } from "../services/UserService";
 import { checkUsername } from "../services/AuthService";
 import { useNavigate } from "react-router-dom";
 
@@ -10,13 +10,12 @@ const EditProfile = () => {
 
     const [valid, setValid]=useState(true);
 
-    const [profile, setProfile] = useState<UserProfileType>(
+    const [profile, setProfile] = useState<EditProfileType>(
         {
-            name: "",
+            firstName: "",
+            lastName: "",
             username: "",
-            about: "",
-            profilePictureUrl: ""
-        }
+            about: ""        }
     );
 
     const [profilePhoto, setProfilePhoto] = useState<File | null>(null);
@@ -40,16 +39,15 @@ const EditProfile = () => {
         const editProfile = async() => {
             try{
                 const formData = new FormData();
-                formData.append("name", profile.name);
+                formData.append("firstName", profile.firstName);
+                formData.append("lastName", profile.lastName);
                 formData.append("username", profile.username);
                 formData.append("about", profile.about);
                 if(profilePhoto){
-                    formData.append("profilePhoto", profilePhoto);
+                    formData.append("profilePicture", profilePhoto);
                 }
 
                 const response = await editUserProfile(formData);
-
-                setProfile(response);
 
                 navigate("/profile-user");
 
@@ -59,6 +57,8 @@ const EditProfile = () => {
                 console.log("Error while saving information: ", error);
             }
         }
+
+        editProfile();
 
     }
 
@@ -84,9 +84,13 @@ const EditProfile = () => {
 
         const fetchInfo = async() => {
             try{
-                const response = await getUserProfile();
-                setProfile(response);
-                localStorage.setItem("username", response.username);
+                const response = await getEditUserProfile();
+                setProfile({
+            firstName: response.firstName,
+            lastName: response.lastName,
+            username: response.username,
+            about: response.about
+        });
             }
             catch(error){
                 console.log("Error while loading profile info: ", error);
@@ -115,8 +119,10 @@ const EditProfile = () => {
                      />
                 </div>
                 <div>
-                    <label>Name</label>
-                    <input name="name" value={profile.name} onChange={handleChange} />
+                    <label>First Name</label>
+                    <input name="firstName" value={profile.firstName} onChange={handleChange} />
+                    <label>Last Name</label>
+                    <input name="lastName" value={profile.lastName} onChange={handleChange} />
 
                     <label>Username</label>
                     <input name = "username" value={profile.username} onChange={handleChange} />
