@@ -1,5 +1,7 @@
 package course.course_distributor.controller;
 
+import java.io.IOException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,13 +44,14 @@ public class UserController {
     }
 
     @PutMapping("/edit")
-    public ResponseEntity<String> editProfile(@RequestParam String firstName,
+    public ResponseEntity<UserProfileResponse> editProfile(Authentication authentication,
+                                            @RequestParam String firstName,
                                             @RequestParam String lastName,
                                             @RequestParam String username,
                                             @RequestParam String about,
                                             @RequestParam MultipartFile profilePicture
-                                            ){
-        return ResponseEntity.status(HttpStatus.CREATED).body(service.editProfile(firstName, lastName, username, about, profilePicture));                                          
+                                            ) throws IOException{
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.editProfile(authentication.getName(), firstName, lastName, username, about, profilePicture));                                          
                                             }
 
     
