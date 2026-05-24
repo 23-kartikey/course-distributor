@@ -6,8 +6,8 @@ export type UserProfileType = {
 }
 
 export type EditProfileType = {
-    name: string;
+    firstName: string;
+    lastName: string;
     username: string;
     about: string;
-    profilePicture?: File;
 }
