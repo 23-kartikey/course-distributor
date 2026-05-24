@@ -40,7 +40,7 @@ public class UserController {
     }
 
     @PutMapping("/edit")
-    public ResponseEntity<UserProfileResponse> editProfile(Authentication authentication,
+    public ResponseEntity<EditProfileResponse> editProfile(Authentication authentication,
                                             @RequestParam String firstName,
                                             @RequestParam String lastName,
                                             @RequestParam String username,
