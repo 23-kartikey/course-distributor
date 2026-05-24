@@ -2,8 +2,11 @@ import { useEffect, useState } from "react";
 import type { UserProfileType } from "../types/user";
 import { editUserProfile, getUserProfile } from "../services/UserService";
 import { checkUsername } from "../services/AuthService";
+import { useNavigate } from "react-router-dom";
 
 const EditProfile = () => {
+
+    const navigate = useNavigate();
 
     const [valid, setValid]=useState(true);
 
@@ -11,7 +14,8 @@ const EditProfile = () => {
         {
             name: "",
             username: "",
-            about: ""
+            about: "",
+            profilePictureUrl: ""
         }
     );
 
@@ -46,6 +50,8 @@ const EditProfile = () => {
                 const response = await editUserProfile(formData);
 
                 setProfile(response);
+
+                navigate("/profile-user");
 
 
             }
