@@ -12,7 +12,7 @@ export const getUserProfile = async():Promise<UserProfileType> => {
 export const getEditUserProfile = async():Promise<EditProfileType> => {
 
     const response = await API.get("user/profile/edit");
-    console.log("Profile fetched");
+    console.log("Edit Profile fetched");
     return response.data;
 
 }
