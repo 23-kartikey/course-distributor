@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import course.course_distributor.dto.DetailsRequest;
 import course.course_distributor.dto.UserProfileResponse;
 import course.course_distributor.security.CustomUserDetails;
 import course.course_distributor.service.UserService;
