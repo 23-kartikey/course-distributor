@@ -51,7 +51,7 @@ const Register = () => {
         try{
             const response = await register(registerForm);
             setSuccess(true);
-            login(response.token);
+            login(response.token, response.username);
             console.log("Registration Successfull!");
             navigate("/");
         }
