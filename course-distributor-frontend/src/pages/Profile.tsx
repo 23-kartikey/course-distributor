@@ -60,8 +60,8 @@ const Profile = () => {
                             </div>
                         </div>
                         <div className="profile-bio">
-                            <h4>Kartikey Chauhan{/*profile.name*/}</h4>
-                            <p>{/*profile.about*/}This is an about created for test</p>
+                            <h4>{profile.name}</h4>
+                            <p>{profile.about}</p>
                         </div>
                     </div>
                 </div>
