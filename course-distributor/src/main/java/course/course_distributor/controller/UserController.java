@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import course.course_distributor.dto.EditProfileResponse;
 import course.course_distributor.dto.UserProfileResponse;
 import course.course_distributor.service.UserService;
 
@@ -48,6 +49,15 @@ public class UserController {
                                             ) throws IOException{
         return ResponseEntity.status(HttpStatus.CREATED).body(service.editProfile(authentication.getName(), firstName, lastName, username, about, profilePicture));                                          
                                             }
+
+    @GetMapping("/profile/edit")
+    public ResponseEntity<EditProfileResponse> getEditProfile(Authentication authentication){
+        logger.info("======IN GETPROFILE CONTROLLER METHOD==============");
+        logger.info("AUTH: {}", authentication);
+        logger.info("PRINCIPAL CLASS: {}",
+            authentication.getPrincipal().getClass());
+        return ResponseEntity.ok(service.getEditProfile(authentication.getName()));
+    }
 
     
 
