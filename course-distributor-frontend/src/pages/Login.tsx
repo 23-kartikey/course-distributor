@@ -34,7 +34,7 @@ const Login = () => {
 
         try{
             const response = await loginUser(loginForm);
-            login(response.token);
+            login(response.token, response.username);
             console.log("Successful Login!");
             setSuccess(true);
             window.location.href = "/";
