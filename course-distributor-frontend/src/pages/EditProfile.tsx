@@ -48,7 +48,7 @@ const EditProfile = () => {
                 }
 
                 const response = await editUserProfile(formData);
-
+                console.log("Editted successfully: ", response);
                 navigate("/profile-user");
 
 
@@ -85,12 +85,11 @@ const EditProfile = () => {
         const fetchInfo = async() => {
             try{
                 const response = await getEditUserProfile();
-                setProfile({
-            firstName: response.firstName,
-            lastName: response.lastName,
-            username: response.username,
-            about: response.about
-        });
+                console.log(response);
+                if(response.firstName!=null) setProfile({...profile, username: response.firstName});
+                if(response.lastName!=null) setProfile({...profile, lastName: response.lastName});
+                if(response.username!=null) setProfile({...profile, username: response.username});
+                if(response.about!=null) setProfile({...profile, about: response.about});
             }
             catch(error){
                 console.log("Error while loading profile info: ", error);
