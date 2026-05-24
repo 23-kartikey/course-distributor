@@ -59,7 +59,7 @@ public class AuthServiceImpl implements AuthService{
 
         String token = tokenProvider.generateToken(authentication);
 
-        return new TokenResponse(token);
+        return new TokenResponse(token, authentication.getName());
     }
 
     @Override
@@ -80,7 +80,7 @@ public class AuthServiceImpl implements AuthService{
 
         String token = tokenProvider.generateToken(authentication);
 
-        return new TokenResponse(token);
+        return new TokenResponse(token, req.email());
 
     }
 
