@@ -32,3 +32,9 @@ export const editUserProfile = async(formData:FormData):Promise<EditProfileType>
     return response.data;
 
 }
+
+export const getProfile = (id:number) => {
+
+    
+
+}
