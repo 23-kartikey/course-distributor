@@ -35,7 +35,7 @@ export const editUserProfile = async(formData:FormData):Promise<EditProfileType>
 
 export const getProfile = (id:number):Promise<UserProfileType> => {
 
-    
+    const response = API.get(`/user/`)
 
 }
 
