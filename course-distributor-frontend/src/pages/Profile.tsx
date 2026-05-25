@@ -13,7 +13,9 @@ const Profile = () => {
             username: '',
             name: '',
             about: '',
-            profilePictureUrl: "https://legal-services-uae.com/wp-content/uploads/2024/09/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg"
+            profilePictureUrl: "https://legal-services-uae.com/wp-content/uploads/2024/09/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg",
+            followers: 0,
+            following: 0
         }
     );
 
@@ -52,15 +54,15 @@ const Profile = () => {
                         </div>
                         <div className="profile-stats">
                             <div>
-                                <span>12</span>
+                                <span>0</span>
                                 <p>Posts</p>
                             </div>
                             <div>
-                                <span>540</span>
+                                <span>{profile.followers}</span>
                                 <p>Followers</p>
                             </div>
                             <div>
-                                <span>180</span>
+                                <span>{profile.following}</span>
                                 <p>Following</p>
                             </div>
                         </div>
