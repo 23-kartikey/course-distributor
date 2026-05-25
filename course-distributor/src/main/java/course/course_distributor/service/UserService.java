@@ -52,6 +52,19 @@ public class UserService {
                     .build();
     }
 
+    public UserProfileResponse getUserProfile(Long id){
+        User user = userRepo.findById(id).orElseThrow(()->new UsernameNotFoundException("User with id: "+id+" not  found"));
+        return UserProfileResponse
+                    .builder()
+                    .username(user.getUsername())
+                    .name(user.getFirstName()+" "+user.getLastName())
+                    .about(user.getAbout())
+                    .followers(user.getFollowers().size())
+                    .following(user.getFollowing().size())
+                    .profilePictureUrl(user.getProfilePictureUrl())
+                    .build();
+    }
+
     public EditProfileResponse getEditProfile(String username){
         User user = userRepo.findByUsernameOrEmail(username, username).orElseThrow(()->new UsernameNotFoundException(username));
         return new EditProfileResponse(user.getFirstName(), user.getLastName(), user.getUsername(), user.getAbout());
