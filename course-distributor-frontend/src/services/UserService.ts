@@ -38,3 +38,8 @@ export const getProfile = (id:number) => {
     
 
 }
+
+export const follow = async(id: number):Promise<void> => {
+    const response = await API.post(`/user/follow/${id}`);
+    return response.data;
+}
