@@ -62,8 +62,9 @@ public class UserController {
     }
 
     @PostMapping("/follow/{id}")
-    public ResponseEntity<Boolean> followUser(Authentication authentication, @PathVariable long id){
-
+    public ResponseEntity<Void> followUser(Authentication authentication, @PathVariable long id){
+        service.followUser(authentication.getName(), id);
+        return ResponseEntity.status(201).build();
     }
 
 }
