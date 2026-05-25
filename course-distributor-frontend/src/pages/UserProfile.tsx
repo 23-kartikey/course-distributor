@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import type { UserProfileType } from "../types/user";
-import { getProfile, getUserProfile } from "../services/UserService";
+import { follow, getProfile, getUserProfile } from "../services/UserService";
 
 const UserProfile = () => {
 
@@ -20,8 +20,12 @@ const UserProfile = () => {
 
     const handleFollow = async() => {
         try{
-            const response = await handleFollow()
-    }
+            const response = await follow(userId);
+            console.log(response);
+        }
+        catch(error){
+            console.log(error);
+        }
 
     useEffect(() => {
         const fetchUserProfile = async() => {
