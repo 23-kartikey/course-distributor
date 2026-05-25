@@ -74,4 +74,11 @@ public class UserService {
 
     }
 
+    public void followUser(String username, Long id){
+        User followedUser = userRepo.findById(id).orElseThrow(()->new UsernameNotFoundException("User with id: "+id+" not found"));
+        User user = userRepo.findByUsername(username).orElseThrow(()->new UsernameNotFoundException(username));
+        user.getFollowing().add(followedUser);
+        userRepo.save(user);
+    }
+
 }
