@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import EditProfile from "./pages/EditProfile";
+import UserProfile from "./pages/UserProfile";
 
 const App = () => {
     return(
@@ -21,6 +22,7 @@ const App = () => {
                 <Route path="/profile-user" element={<Profile />} />
                 <Route path="/create-course" element={<CreateCourse />} />
                 <Route path="/edit-profile" element={<EditProfile />} />
+                <Route path="/profile/:id" element={<UserProfile />} />
             </Routes>
         </BrowserRouter>
     );

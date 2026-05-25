@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import type { UserProfileType } from "../types/user";
-import { getUserProfile } from "../services/UserService";
-import "../styles/Profile.css";
-import { useNavigate } from "react-router-dom";
+import { follow, getProfile, getUserProfile } from "../services/UserService";
 
-const Profile = () => {
+const UserProfile = () => {
 
+    const { id } = useParams();
+    const userId = Number(id);
     const navigate = useNavigate();
 
     const [profile, setProfile] = useState<UserProfileType>(
@@ -13,16 +14,26 @@ const Profile = () => {
             username: '',
             name: '',
             about: '',
-            profilePictureUrl: "https://legal-services-uae.com/wp-content/uploads/2024/09/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg",
             followers: 0,
-            following: 0
+            following: 0,
+            profilePictureUrl: "https://legal-services-uae.com/wp-content/uploads/2024/09/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg"
         }
     );
+
+    const handleFollow = async() => {
+        try{
+            const response = await follow(userId);
+            console.log(response);
+        }
+        catch(error){
+            console.log(error);
+        }
+    }
 
     useEffect(() => {
         const fetchUserProfile = async() => {
             try{
-                const response = await getUserProfile();
+                const response = await getProfile(userId);
                 console.log(response);
                 setProfile(response);
             }
@@ -50,7 +61,7 @@ const Profile = () => {
                     <div className="profile-info">
                         <div className="profile-header">
                             <h2>{profile.username}</h2>
-                            <button onClick={()=>navigate("/edit-profile")}>Edit Profile</button>
+                            <button onClick={handleFollow}>Follow</button>
                         </div>
                         <div className="profile-stats">
                             <div>
@@ -75,7 +86,6 @@ const Profile = () => {
             </div>
         </div>
     );
-
 }
 
-export default Profile;
+export default UserProfile;

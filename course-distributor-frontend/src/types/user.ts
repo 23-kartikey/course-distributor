@@ -2,6 +2,8 @@ export type UserProfileType = {
     name : string;
     username: string;
     about: string;
+    followers: number;
+    following: number;
     profilePictureUrl?: string
 }
 

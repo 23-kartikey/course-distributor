@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -39,6 +41,12 @@ public class UserController {
         return ResponseEntity.ok(service.getUserProfile(authentication.getName()));
     }
 
+    @GetMapping("/profile/{id}")
+    public ResponseEntity<UserProfileResponse> getProfile(@PathVariable long id){
+        logger.info("======IN GETPROFILE CONTROLLER METHOD==============");
+        return ResponseEntity.ok(service.getUserProfile(id));
+    }
+
     @PutMapping("/edit")
     public ResponseEntity<EditProfileResponse> editProfile(Authentication authentication,
                                             @RequestParam String firstName,
@@ -59,6 +67,10 @@ public class UserController {
         return ResponseEntity.ok(service.getEditProfile(authentication.getName()));
     }
 
-    
+    @PostMapping("/follow/{id}")
+    public ResponseEntity<Void> followUser(Authentication authentication, @PathVariable long id){
+        service.followUser(authentication.getName(), id);
+        return ResponseEntity.status(201).build();
+    }
 
 }

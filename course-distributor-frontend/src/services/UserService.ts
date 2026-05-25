@@ -32,3 +32,16 @@ export const editUserProfile = async(formData:FormData):Promise<EditProfileType>
     return response.data;
 
 }
+
+export const getProfile = async(id:number):Promise<UserProfileType> => {
+
+    const response = await API.get(`/user/profile/${id}`);
+    console.log("Profile fetched: "+response.data);
+    return response.data;
+
+}
+
+export const follow = async(id: number):Promise<void> => {
+    const response = await API.post(`/user/follow/${id}`);
+    return response.data;
+}
