@@ -46,6 +46,8 @@ public class UserService {
                     .username(user.getUsername())
                     .name(user.getFirstName()+" "+user.getLastName())
                     .about(user.getAbout())
+                    .followers(user.getFollowers().size())
+                    .following(user.getFollowing().size())
                     .profilePictureUrl(user.getProfilePictureUrl())
                     .build();
     }
