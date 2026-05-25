@@ -69,12 +69,12 @@ const UserProfile = () => {
                                 <p>Posts</p>
                             </div>
                             <div>
-                                <span>Followers</span>
-                                <p>{profile.followers}</p>
+                                <span>{profile.followers}</span>
+                                <p>Followers</p>
                             </div>
                             <div>
-                                <span>Following</span>
-                                <p>{profile.following}</p>
+                                <span>{profile.following}</span>
+                                <p>Following</p>
                             </div>
                         </div>
                         <div className="profile-bio">
