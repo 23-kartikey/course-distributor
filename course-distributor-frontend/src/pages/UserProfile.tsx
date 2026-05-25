@@ -14,6 +14,8 @@ const UserProfile = () => {
             username: '',
             name: '',
             about: '',
+            followers: 0,
+            following: 0,
             profilePictureUrl: "https://legal-services-uae.com/wp-content/uploads/2024/09/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg"
         }
     );
@@ -26,6 +28,7 @@ const UserProfile = () => {
         catch(error){
             console.log(error);
         }
+    }
 
     useEffect(() => {
         const fetchUserProfile = async() => {
@@ -67,11 +70,11 @@ const UserProfile = () => {
                             </div>
                             <div>
                                 <span>540</span>
-                                <p>Followers</p>
+                                <p>{profile.followers}</p>
                             </div>
                             <div>
                                 <span>180</span>
-                                <p>Following</p>
+                                <p>{profile.following}</p>
                             </div>
                         </div>
                         <div className="profile-bio">
