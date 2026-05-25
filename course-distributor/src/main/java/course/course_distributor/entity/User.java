@@ -76,8 +76,8 @@ public class User{
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
         name="follow_table",
-        joinColumns = @JoinColumn(name="following", referencedColumnName = "id"),
-        inverseJoinColumns = @JoinColumn(name="followers", referencedColumnName = "id")
+        joinColumns = @JoinColumn(name="follower_id", referencedColumnName = "id"),
+        inverseJoinColumns = @JoinColumn(name="following_id", referencedColumnName = "id")
     )
     private Set<User> following;
 
