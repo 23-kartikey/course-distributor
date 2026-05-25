@@ -18,6 +18,11 @@ const UserProfile = () => {
         }
     );
 
+    const handleFollow = async() => {
+        try{
+            const response = await handleFollow()
+    }
+
     useEffect(() => {
         const fetchUserProfile = async() => {
             try{
@@ -49,7 +54,7 @@ const UserProfile = () => {
                     <div className="profile-info">
                         <div className="profile-header">
                             <h2>{profile.username}</h2>
-                            <button>Follow</button>
+                            <button onClick={handleFollow}>Follow</button>
                         </div>
                         <div className="profile-stats">
                             <div>
