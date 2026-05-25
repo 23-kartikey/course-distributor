@@ -72,5 +72,16 @@ public class User{
         inverseJoinColumns = @JoinColumn(name="role_id", referencedColumnName="id")
     )
     private Set<Role> roles;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+        name="follow_table",
+        joinColumns = @JoinColumn(name="following", referencedColumnName = "id"),
+        inverseJoinColumns = @JoinColumn(name="followers", referencedColumnName = "id")
+    )
+    private Set<User> following;
+
+    @ManyToMany(mappedBy = "following")
+    private Set<User> followers;
     
 }
