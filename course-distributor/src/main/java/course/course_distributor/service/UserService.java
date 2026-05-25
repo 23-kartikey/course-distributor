@@ -41,7 +41,13 @@ public class UserService {
 
     public UserProfileResponse getUserProfile(String username){
         User user = userRepo.findByUsernameOrEmail(username, username).orElseThrow(()->new UsernameNotFoundException(username));
-        return new UserProfileResponse(user.getUsername(), user.getFirstName()+" "+user.getLastName(), user.getAbout(), user.getProfilePictureUrl());
+        return UserProfileResponse
+                    .builder()
+                    .username(user.getUsername())
+                    .name(user.getFirstName()+" "+user.getLastName())
+                    .about(user.getAbout())
+                    .profilePictureUrl(user.getProfilePictureUrl())
+                    .build();
     }
 
     public EditProfileResponse getEditProfile(String username){
