@@ -33,9 +33,11 @@ export const editUserProfile = async(formData:FormData):Promise<EditProfileType>
 
 }
 
-export const getProfile = (id:number):Promise<UserProfileType> => {
+export const getProfile = async(id:number):Promise<UserProfileType> => {
 
-    const response = API.get(`/user/`)
+    const response = await API.get(`/user/profile/${id}`);
+    console.log("Profile fetched: "+response.data);
+    return response.data;
 
 }
 
