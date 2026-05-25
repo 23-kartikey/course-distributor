@@ -33,7 +33,7 @@ export const editUserProfile = async(formData:FormData):Promise<EditProfileType>
 
 }
 
-export const getProfile = (id:number) => {
+export const getProfile = (id:number):Promise<UserProfileType> => {
 
     
 
