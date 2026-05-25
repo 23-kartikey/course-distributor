@@ -41,7 +41,7 @@ public class UserController {
         return ResponseEntity.ok(service.getUserProfile(authentication.getName()));
     }
 
-    @GetMapping("/profile/{id]")
+    @GetMapping("/profile/{id}")
     public ResponseEntity<UserProfileResponse> getProfile(@PathVariable long id){
         logger.info("======IN GETPROFILE CONTROLLER METHOD==============");
         return ResponseEntity.ok(service.getUserProfile(id));
