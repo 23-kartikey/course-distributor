@@ -55,7 +55,7 @@ const Profile = () => {
                         </div>
                         <div className="profile-stats">
                             <div>
-                                <span>0</span>
+                                <span>{profile.courseCount}</span>
                                 <p>Courses</p>
                             </div>
                             <div>
