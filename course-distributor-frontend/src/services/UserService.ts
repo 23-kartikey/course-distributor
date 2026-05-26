@@ -1,7 +1,7 @@
 import API from "./api";
 import type { EditProfileType, UserProfileType } from "../types/user";
 
-export const getUserProfile = async():Promise<UserProfileType> => {
+export const getProfile = async():Promise<UserProfileType> => {
 
     const response = await API.get("user/profile");
     console.log("Profile fetched");
@@ -33,7 +33,7 @@ export const editUserProfile = async(formData:FormData):Promise<EditProfileType>
 
 }
 
-export const getProfile = async(id:number):Promise<UserProfileType> => {
+export const getUserProfile = async(id:number):Promise<UserProfileType> => {
 
     const response = await API.get(`/user/profile/${id}`);
     console.log("Profile fetched: "+response.data);
