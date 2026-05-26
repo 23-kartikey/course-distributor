@@ -26,6 +26,9 @@ const UserProfile = () => {
         try{
             const response = await follow(userId);
             console.log(response);
+            setProfile(prev=>({
+                ...prev, isFollowedBy:!prev.isFollowedBy
+            }));
         }
         catch(error){
             console.log(error);
@@ -63,7 +66,7 @@ const UserProfile = () => {
                     <div className="profile-info">
                         <div className="profile-header">
                             <h2>{profile.username}</h2>
-                            <button onClick={handleFollow}>Follow</button>
+                            <button onClick={handleFollow}>{profile.isFollowedBy?("Following"):("Follow")}</button>
                         </div>
                         <div className="profile-stats">
                             <div>
