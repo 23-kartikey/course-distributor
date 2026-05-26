@@ -48,6 +48,7 @@ public class UserService {
                     .about(user.getAbout())
                     .followers(user.getFollowers().size())
                     .following(user.getFollowing().size())
+                    .courseCount(user.getAuthoredCourses().size())
                     .profilePictureUrl(user.getProfilePictureUrl())
                     .build();
     }
