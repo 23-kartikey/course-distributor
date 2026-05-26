@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { UserProfileType } from "../types/user";
-import { getUserProfile } from "../services/UserService";
+import { getProfile } from "../services/UserService";
 import "../styles/Profile.css";
 import { useNavigate } from "react-router-dom";
 
@@ -23,7 +23,7 @@ const Profile = () => {
     useEffect(() => {
         const fetchUserProfile = async() => {
             try{
-                const response = await getUserProfile();
+                const response = await getProfile();
                 console.log(response);
                 setProfile(response);
             }
