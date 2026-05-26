@@ -45,3 +45,8 @@ export const follow = async(id: number):Promise<void> => {
     const response = await API.post(`/user/follow/${id}`);
     return response.data;
 }
+
+export const unfollow = async(id: number):Promise<void> => {
+    const response = await API.post(`/user/unfollow/${id}`)
+    return response.data;
+}
