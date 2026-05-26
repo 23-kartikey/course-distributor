@@ -53,7 +53,8 @@ public class UserService {
                     .build();
     }
 
-    public UserProfileResponse getUserProfile(Long id){
+    public UserProfileResponse getUserProfile(Long id, String username){
+        User owner = userRepo.findByUsername(username).orElseThrow(()->new UsernameNotFoundException(username));
         User user = userRepo.findById(id).orElseThrow(()->new UsernameNotFoundException("User with id: "+id+" not  found"));
         return UserProfileResponse
                     .builder()
@@ -63,6 +64,7 @@ public class UserService {
                     .followers(user.getFollowers().size())
                     .following(user.getFollowing().size())
                     .courseCount(user.getAuthoredCourses().size())
+                    .isFollowedBy(user.getFollowers().contains(owner))
                     .profilePictureUrl(user.getProfilePictureUrl())
                     .build();
     }
