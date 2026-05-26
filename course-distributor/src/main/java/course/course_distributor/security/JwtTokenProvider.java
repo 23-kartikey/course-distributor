@@ -30,7 +30,7 @@ public class JwtTokenProvider {
 
     public String generateToken(Authentication authentication){
 
-        String id = userRepo.findByUsername(authentication.getName()).orElseThrow(()-> new UsernameNotFoundException(authentication.getName()));
+        String id = userRepo.findByUsername(authentication.getName()).orElseThrow(()-> new UsernameNotFoundException(authentication.getName())).getId().toString();
 
         Date currentDate = new Date();
 
