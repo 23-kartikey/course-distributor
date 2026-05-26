@@ -7,6 +7,7 @@ import javax.crypto.SecretKey;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Jwts;
@@ -24,14 +25,14 @@ public class JwtTokenProvider {
 
     public String generateToken(Authentication authentication){
 
-        String username = authentication.getName();
+        String id = userRepo.findByUsername(authentication.getName()).orElseThrow(()-> new UsernameNotFoundException(authentication.getName()));
 
         Date currentDate = new Date();
 
         Date expireDate = new Date(currentDate.getTime() + jwtExpirationDate);
 
         String token = Jwts.builder()
-                    .subject(username)
+                    .subject(id)
                     .issuedAt(new Date())
                     .expiration(expireDate)
                     .signWith(key())
@@ -53,7 +54,6 @@ public class JwtTokenProvider {
             .parseSignedClaims(token)
             .getPayload()
             .getSubject();
-
     }
 
     public boolean validateToken(String token){
