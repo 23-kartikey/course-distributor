@@ -76,23 +76,26 @@ public class UserService {
 
     public EditProfileResponse editProfile(String usernameOrEmail, String firstName, String lastName, String username, String about, MultipartFile profilePicture)throws IOException{
         logger.info("++++Inside Edit Profile method++++++");
-        String fileName = UUID.randomUUID() + "_"+profilePicture.getOriginalFilename();
-        Path path = Paths.get("uploads", fileName);
-
-        Path uploadPath = Paths.get("uploads");
-
-        if(!Files.exists(uploadPath)){
-            Files.createDirectories(uploadPath);
-        }
-
-        Files.copy(profilePicture.getInputStream(), path);
-
         User user = userRepo.findByUsernameOrEmail(usernameOrEmail, usernameOrEmail)
                             .orElseThrow(()->new UsernameNotFoundException(usernameOrEmail));
+        if(profilePicture!=null){
+            String fileName = UUID.randomUUID() + "_"+profilePicture.getOriginalFilename();
+            Path path = Paths.get("uploads", fileName);
+
+            Path uploadPath = Paths.get("uploads");
+
+            if(!Files.exists(uploadPath)){
+                Files.createDirectories(uploadPath);
+            }
+
+            Files.copy(profilePicture.getInputStream(), path);
+            user.setProfilePictureUrl("/uploads/"+fileName);
+        }
+  
+        user.setUsername(username);
         user.setFirstName(firstName);
         user.setLastName(lastName);
         user.setAbout(about);
-        user.setProfilePictureUrl("/uploads/"+fileName);
         userRepo.save(user);
 
         return new EditProfileResponse(user.getUsername(), user.getFirstName()+" "+user.getLastName(), user.getAbout(), user.getProfilePictureUrl());
@@ -103,6 +106,13 @@ public class UserService {
         User followedUser = userRepo.findById(id).orElseThrow(()->new UsernameNotFoundException("User with id: "+id+" not found"));
         User user = userRepo.findByUsername(username).orElseThrow(()->new UsernameNotFoundException(username));
         user.getFollowing().add(followedUser);
+        userRepo.save(user);
+    }
+
+    public void unfollowUser(String username, Long id){
+        User followedUser = userRepo.findById(id).orElseThrow(()->new UsernameNotFoundException("User with id: "+id+" not found"));
+        User user = userRepo.findByUsername(username).orElseThrow(()->new UsernameNotFoundException(username));
+        user.getFollowing().remove(followedUser);
         userRepo.save(user);
     }
 
