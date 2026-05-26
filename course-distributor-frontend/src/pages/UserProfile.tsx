@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import type { UserProfileType } from "../types/user";
-import { follow, getUserProfile } from "../services/UserService";
+import { follow, getUserProfile, unfollow } from "../services/UserService";
 
 const UserProfile = () => {
 
@@ -25,10 +25,27 @@ const UserProfile = () => {
     const handleFollow = async() => {
         try{
             const response = await follow(userId);
+            setProfile(prev=>({
+                ...prev, followers: profile.followers + 1
+            }))
             console.log(response);
             setProfile(prev=>({
                 ...prev, isFollowedBy:!prev.isFollowedBy
             }));
+        }
+        catch(error){
+            console.log(error);
+        }
+    }
+
+    const handleUnfollow = async() => {
+        try{
+            const response = await unfollow(userId);
+            console.log(response);
+            setProfile(prev=>({
+                ...prev, isFollowedBy:!prev.isFollowedBy
+            }));
+            window.location.reload();
         }
         catch(error){
             console.log(error);
@@ -66,7 +83,7 @@ const UserProfile = () => {
                     <div className="profile-info">
                         <div className="profile-header">
                             <h2>{profile.username}</h2>
-                            <button onClick={handleFollow}>{profile.isFollowedBy?("Following"):("Follow")}</button>
+                            {profile.isFollowedBy?(<button onClick={handleUnfollow}>Unfollow</button>):<button onClick={handleFollow}>Follow</button>}
                         </div>
                         <div className="profile-stats">
                             <div>
