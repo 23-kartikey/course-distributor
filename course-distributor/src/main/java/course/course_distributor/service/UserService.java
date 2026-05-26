@@ -63,6 +63,7 @@ public class UserService {
                     .followers(user.getFollowers().size())
                     .following(user.getFollowing().size())
                     .profilePictureUrl(user.getProfilePictureUrl())
+                    .profilePictureUrl(user.getProfilePictureUrl())
                     .build();
     }
 
