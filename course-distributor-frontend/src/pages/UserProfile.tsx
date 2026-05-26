@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import type { UserProfileType } from "../types/user";
-import { follow, getProfile, getUserProfile } from "../services/UserService";
+import { follow, getUserProfile } from "../services/UserService";
 
 const UserProfile = () => {
 
@@ -17,6 +17,7 @@ const UserProfile = () => {
             followers: 0,
             following: 0,
             courseCount: 0,
+            isFollowedBy: false,
             profilePictureUrl: "https://legal-services-uae.com/wp-content/uploads/2024/09/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg"
         }
     );
@@ -34,7 +35,7 @@ const UserProfile = () => {
     useEffect(() => {
         const fetchUserProfile = async() => {
             try{
-                const response = await getProfile(userId);
+                const response = await getUserProfile(userId);
                 console.log(response);
                 setProfile(response);
             }
