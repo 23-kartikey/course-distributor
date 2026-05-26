@@ -5,6 +5,7 @@ export type UserProfileType = {
     followers: number;
     following: number;
     courseCount: number;
+    isFollowedBy?: boolean;
     profilePictureUrl?: string
 }
 
