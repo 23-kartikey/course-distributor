@@ -53,12 +53,13 @@ public class JwtTokenProvider {
 
     public String getUsername(String token){
 
-        return Jwts.parser()
+        String id = Jwts.parser()
             .verifyWith((SecretKey) key())
             .build()
             .parseSignedClaims(token)
             .getPayload()
             .getSubject();
+        return userRepo.findById(Long.parseLong(id)).orElseThrow(()-> new UsernameNotFoundException(id)).getUsername();
     }
 
     public boolean validateToken(String token){
