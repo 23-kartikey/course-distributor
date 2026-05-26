@@ -42,9 +42,9 @@ public class UserController {
     }
 
     @GetMapping("/profile/{id}")
-    public ResponseEntity<UserProfileResponse> getProfile(@PathVariable long id){
+    public ResponseEntity<UserProfileResponse> getProfile(@PathVariable long id, Authentication authentication){
         logger.info("======IN GETPROFILE CONTROLLER METHOD==============");
-        return ResponseEntity.ok(service.getUserProfile(id));
+        return ResponseEntity.ok(service.getUserProfile(id, authentication.getName()));
     }
 
     @PutMapping("/edit")
@@ -53,10 +53,10 @@ public class UserController {
                                             @RequestParam String lastName,
                                             @RequestParam String username,
                                             @RequestParam String about,
-                                            @RequestParam MultipartFile profilePicture
+                                            @RequestParam(required = false) MultipartFile profilePicture
                                             ) throws IOException{
         return ResponseEntity.status(HttpStatus.CREATED).body(service.editProfile(authentication.getName(), firstName, lastName, username, about, profilePicture));                                          
-                                            }
+    }
 
     @GetMapping("/profile/edit")
     public ResponseEntity<EditProfileResponse> getEditProfile(Authentication authentication){
@@ -70,6 +70,12 @@ public class UserController {
     @PostMapping("/follow/{id}")
     public ResponseEntity<Void> followUser(Authentication authentication, @PathVariable long id){
         service.followUser(authentication.getName(), id);
+        return ResponseEntity.status(201).build();
+    }
+
+    @PostMapping("/unfollow/{id}")
+    public ResponseEntity<Void> unfollowUser(Authentication authentication, @PathVariable long id){
+        service.unfollowUser(authentication.getName(), id);
         return ResponseEntity.status(201).build();
     }
 

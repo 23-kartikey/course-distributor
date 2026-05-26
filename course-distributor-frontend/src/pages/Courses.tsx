@@ -9,32 +9,38 @@ const Courses = () =>{
     const [courses, setCourses] = useState<Course[]>([{
             id:1,
             name: "",
-            shortDescription: ""
+            shortDescription: "",
+            authorId: 0
         },
         {
             id:2,
             name: "",
-            shortDescription: ""
+            shortDescription: "",
+            authorId: 0
         },
         {
         id:3,
         name: "Flunk",
-        shortDescription: ""
+        shortDescription: "",
+        authorId: 0
     },
     {
             id:4,
             name: "",
-            shortDescription: ""
+            shortDescription: "",
+            authorId: 0
         },
         {
             id:5,
             name: "",
-            shortDescription: ""
+            shortDescription: "",
+            authorId: 0
         },
         {
         id:6,
         name: "",
-        shortDescription: ""
+        shortDescription: "",
+        authorId: 0
     }
 
     ])

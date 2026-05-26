@@ -4,6 +4,8 @@ export type UserProfileType = {
     about: string;
     followers: number;
     following: number;
+    courseCount: number;
+    isFollowedBy?: boolean;
     profilePictureUrl?: string
 }
 

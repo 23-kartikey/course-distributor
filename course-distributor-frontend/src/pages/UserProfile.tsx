@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import type { UserProfileType } from "../types/user";
-import { follow, getProfile, getUserProfile } from "../services/UserService";
+import { follow, getUserProfile, unfollow } from "../services/UserService";
 
 const UserProfile = () => {
 
@@ -16,6 +16,8 @@ const UserProfile = () => {
             about: '',
             followers: 0,
             following: 0,
+            courseCount: 0,
+            isFollowedBy: false,
             profilePictureUrl: "https://legal-services-uae.com/wp-content/uploads/2024/09/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg"
         }
     );
@@ -23,7 +25,27 @@ const UserProfile = () => {
     const handleFollow = async() => {
         try{
             const response = await follow(userId);
+            setProfile(prev=>({
+                ...prev, followers: profile.followers + 1
+            }))
             console.log(response);
+            setProfile(prev=>({
+                ...prev, isFollowedBy:!prev.isFollowedBy
+            }));
+        }
+        catch(error){
+            console.log(error);
+        }
+    }
+
+    const handleUnfollow = async() => {
+        try{
+            const response = await unfollow(userId);
+            console.log(response);
+            setProfile(prev=>({
+                ...prev, isFollowedBy:!prev.isFollowedBy
+            }));
+            window.location.reload();
         }
         catch(error){
             console.log(error);
@@ -33,7 +55,7 @@ const UserProfile = () => {
     useEffect(() => {
         const fetchUserProfile = async() => {
             try{
-                const response = await getProfile(userId);
+                const response = await getUserProfile(userId);
                 console.log(response);
                 setProfile(response);
             }
@@ -61,12 +83,12 @@ const UserProfile = () => {
                     <div className="profile-info">
                         <div className="profile-header">
                             <h2>{profile.username}</h2>
-                            <button onClick={handleFollow}>Follow</button>
+                            {profile.isFollowedBy?(<button onClick={handleUnfollow}>Unfollow</button>):<button onClick={handleFollow}>Follow</button>}
                         </div>
                         <div className="profile-stats">
                             <div>
-                                <span>0</span>
-                                <p>Posts</p>
+                                <span>{profile.courseCount}</span>
+                                <p>Courses</p>
                             </div>
                             <div>
                                 <span>{profile.followers}</span>

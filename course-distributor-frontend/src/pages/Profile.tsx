@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { UserProfileType } from "../types/user";
-import { getUserProfile } from "../services/UserService";
+import { getProfile } from "../services/UserService";
 import "../styles/Profile.css";
 import { useNavigate } from "react-router-dom";
 
@@ -15,14 +15,15 @@ const Profile = () => {
             about: '',
             profilePictureUrl: "https://legal-services-uae.com/wp-content/uploads/2024/09/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg",
             followers: 0,
-            following: 0
+            following: 0,
+            courseCount: 0
         }
     );
 
     useEffect(() => {
         const fetchUserProfile = async() => {
             try{
-                const response = await getUserProfile();
+                const response = await getProfile();
                 console.log(response);
                 setProfile(response);
             }
@@ -54,8 +55,8 @@ const Profile = () => {
                         </div>
                         <div className="profile-stats">
                             <div>
-                                <span>0</span>
-                                <p>Posts</p>
+                                <span>{profile.courseCount}</span>
+                                <p>Courses</p>
                             </div>
                             <div>
                                 <span>{profile.followers}</span>

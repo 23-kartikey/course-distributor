@@ -79,6 +79,7 @@ public class CourseService {
             .name(course.getName())
             .shortDescription(course.getShortDescription())
             .thumbnailUrl(course.getThumbnailUrl())
+            .authorId(course.getAuthor().getId())
             .build();
     }
 

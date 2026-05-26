@@ -2,7 +2,8 @@ export type Course = {
     id: number,
     name: string,
     shortDescription: string,
-    thumbnailUrl?: string
+    thumbnailUrl?: string,
+    authorId: number
 };
 
 
