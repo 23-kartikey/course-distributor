@@ -42,9 +42,9 @@ public class UserController {
     }
 
     @GetMapping("/profile/{id}")
-    public ResponseEntity<UserProfileResponse> getProfile(@PathVariable long id){
+    public ResponseEntity<UserProfileResponse> getProfile(@PathVariable long id, Authentication authentication){
         logger.info("======IN GETPROFILE CONTROLLER METHOD==============");
-        return ResponseEntity.ok(service.getUserProfile(id));
+        return ResponseEntity.ok(service.getUserProfile(id, authentication.getName()));
     }
 
     @PutMapping("/edit")
