@@ -16,6 +16,7 @@ const UserProfile = () => {
             about: '',
             followers: 0,
             following: 0,
+            courseCount: 0,
             profilePictureUrl: "https://legal-services-uae.com/wp-content/uploads/2024/09/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg"
         }
     );
@@ -65,7 +66,7 @@ const UserProfile = () => {
                         </div>
                         <div className="profile-stats">
                             <div>
-                                <span>0</span>
+                                <span>{profile.courseCount}</span>
                                 <p>Posts</p>
                             </div>
                             <div>
