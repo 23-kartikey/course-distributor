@@ -15,7 +15,8 @@ const Profile = () => {
             about: '',
             profilePictureUrl: "https://legal-services-uae.com/wp-content/uploads/2024/09/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg",
             followers: 0,
-            following: 0
+            following: 0,
+            courseCount: 0
         }
     );
 
