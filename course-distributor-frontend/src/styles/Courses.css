@@ -17,6 +17,10 @@
     /* background: #131313f4; */
     background: rgb(15, 23, 42);
 
+    display: flex;
+
+    flex-direction: column;
+
     border-radius: 24px;
 
     overflow: hidden;
@@ -143,6 +147,8 @@
 
     padding: 1.3rem;
 
+    flex: 1;
+
     background:
         rgba(15, 23, 42, 0.96);
 }
@@ -240,4 +246,11 @@
     text-decoration: none;
 
     font-weight: 600;
+}
+
+.author-container{
+    padding: 1.3rem;
+
+    background:
+        rgba(15, 23, 42, 0.96);
 }
