@@ -27,7 +27,7 @@ const CourseCard = ({course}:CourseCardProps) => {
             </div>
             <div className = "course-content">
                 <p>{course.shortDescription}</p>
-                <p><a  className="author" href="/">Author</a></p>
+                <p><a className="author" href = {`/profile/${course.authorId}`}>Author</a></p>
             </div>
         </div>
     )
