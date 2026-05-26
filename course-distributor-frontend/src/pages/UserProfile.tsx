@@ -68,7 +68,7 @@ const UserProfile = () => {
                         <div className="profile-stats">
                             <div>
                                 <span>{profile.courseCount}</span>
-                                <p>Posts</p>
+                                <p>Courses</p>
                             </div>
                             <div>
                                 <span>{profile.followers}</span>
