@@ -70,8 +70,8 @@ public class UserController {
     }
 
     @GetMapping("/followers")
-    public ResponseEntity<Set<FollowersResponse>> getFollowers(@PathVariable Long id){
-        return ResponseEntity.ok(service.getFollowers(id));
+    public ResponseEntity<Set<FollowersResponse>> getFollowers(Authentication authentication){
+        return ResponseEntity.ok(service.getFollowers(authentication.getName()));
     }
 
     @PostMapping("/follow/{id}")
