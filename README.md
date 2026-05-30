@@ -1,13 +1,8 @@
 # Course Distributor
 
-A full-stack course discovery and interaction platform currently being developed using Spring Boot and MySQL.
+A production-oriented full-stack course discovery platform being built with a scalable backend architecture using Spring Boot and MySQL.
 
-The current backend implementation supports:
-- User management
-- Course management
-- Many-to-many liking system between users and courses
-
-This project will later evolve into a complete production-grade full-stack application with authentication, frontend integration, recommendation systems, deployment pipelines, and more.
+The platform currently supports core course interaction features such as user management, course management, and a many-to-many course liking system. The long-term goal is to evolve this project into a complete industry-grade application with authentication, frontend integration, recommendation systems, caching, CI/CD pipelines, cloud deployment, and real-world scalability practices.
 
 ---
 
@@ -30,17 +25,33 @@ This project will later evolve into a complete production-grade full-stack appli
 
 ---
 
-# Current Features
+# Features
 
-## Implemented
+## Current Features
 
-- Create Users
-- Create Courses
-- Like Courses
-- Many-to-Many Relationship Mapping
-- REST APIs
-- Dockerized MySQL Database
-- Postman API Collection
+### User Management
+- Create users
+- Fetch users
+- User-course relationship handling
+
+### Course Management
+- Create courses
+- Fetch courses
+- Course interaction APIs
+
+### Like System
+- Users can like multiple courses
+- Courses can be liked by multiple users
+- Implemented using a many-to-many relationship
+
+### REST APIs
+- Structured RESTful endpoints
+- JSON request/response handling
+
+### Database & DevOps
+- Dockerized MySQL setup
+- Persistent relational schema
+- Postman API collection for testing
 
 ---
 
@@ -49,8 +60,11 @@ This project will later evolve into a complete production-grade full-stack appli
 ```text
 CourseDistributor/
 │
-├── course-distributor/              # Spring Boot Backend
+├── course-distributor/                 # Spring Boot Backend
 │   ├── src/
+│   │   ├── main/
+│   │   └── test/
+│   │
 │   ├── .mvn/
 │   ├── pom.xml
 │   ├── docker-compose.yml
@@ -60,31 +74,50 @@ CourseDistributor/
 ├── postman_collection/
 │   └── CourseDistributor.postman_collection.json
 │
-└── Readme.md
+└── README.md
 ```
 
 ---
 
-# Database Design
+# System Design Overview
 
-## Many-to-Many Relationship
-
-Users can like multiple courses and courses can be liked by multiple users.
+## Entity Relationship
 
 ```text
 User  <--->  Course
 ```
 
-Implemented using the join table:
+A user can like multiple courses and a course can be liked by multiple users.
+
+This relationship is implemented using a join table:
 
 ```text
 course_like
 ```
 
-### Join Table Structure
+---
 
-| user_id | course_id |
-|----------|------------|
+# Database Schema
+
+## Tables
+
+### user
+Stores platform users.
+
+### course
+Stores course information.
+
+### course_like
+Stores user-course like mappings.
+
+---
+
+# Join Table Structure
+
+| Column | Description |
+|---|---|
+| user_id | References user |
+| course_id | References course |
 
 ---
 
@@ -92,7 +125,7 @@ course_like
 
 ## Prerequisites
 
-Install the following:
+Install the following before running the project:
 
 - Java 21
 - Maven
@@ -101,7 +134,7 @@ Install the following:
 
 ---
 
-# Running the Project
+# Running the Application
 
 ## 1. Clone the Repository
 
@@ -111,7 +144,7 @@ git clone https://github.com/23-kartikey/course-distributor.git
 
 ---
 
-## 2. Navigate to Backend Folder
+## 2. Navigate to Backend Directory
 
 ```bash
 cd course-distributor/course-distributor
@@ -119,13 +152,13 @@ cd course-distributor/course-distributor
 
 ---
 
-## 3. Start MySQL using Docker
+## 3. Start MySQL Container
 
 ```bash
 docker compose up -d
 ```
 
-This starts a MySQL container on:
+This starts the MySQL container on:
 
 ```text
 localhost:3307
@@ -133,9 +166,9 @@ localhost:3307
 
 ---
 
-# Database Configuration
+# Docker Database Configuration
 
-Current Docker database configuration:
+Current database container configuration:
 
 ```yaml
 MYSQL_DATABASE: course_distributor
@@ -161,17 +194,41 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
 
 ---
 
-# Run the Backend
+# Running the Backend
 
-Using Maven:
+## Using Maven
 
 ```bash
 mvn spring-boot:run
 ```
 
-Or run directly from your IDE.
+---
 
-Backend runs on:
+## Using Maven Wrapper
+
+### Linux / Mac
+
+```bash
+./mvnw spring-boot:run
+```
+
+### Windows
+
+```bash
+mvnw.cmd spring-boot:run
+```
+
+---
+
+## Using IDE
+
+Run the main Spring Boot application class directly from your IDE.
+
+---
+
+# Application URL
+
+Backend server runs on:
 
 ```text
 http://localhost:8080
@@ -179,31 +236,19 @@ http://localhost:8080
 
 ---
 
-# API Testing
+# API Documentation
 
-A Postman collection is included for testing APIs.
-
-Location:
-
-```text
-postman_collection/CourseDistributor.postman_collection.json
-```
-
-Import this file into Postman.
-
----
-
-# Current API Endpoints
+## Current Endpoints
 
 | Method | Endpoint | Description |
 |---|---|---|
-| POST | `/user` | Create User |
-| POST | `/course` | Create Course |
-| POST | `/like` | Like a Course |
+| POST | `/user` | Create a user |
+| POST | `/course` | Create a course |
+| POST | `/like` | Like a course |
 
 ---
 
-# Example Request Bodies
+# Example API Requests
 
 ## Create User
 
@@ -225,15 +270,17 @@ Import this file into Postman.
 
 ---
 
-# Database Tables
+# API Testing with Postman
 
-Current schema includes:
+A ready-to-use Postman collection is included.
+
+## Location
 
 ```text
-user
-course
-course_like
+postman_collection/CourseDistributor.postman_collection.json
 ```
+
+Import the collection into Postman to test the APIs.
 
 ---
 
@@ -277,32 +324,60 @@ password
 
 ---
 
-# Future Roadmap
+# Development Goals
 
-## Backend
+## Backend Roadmap
+
 - JWT Authentication
 - Role-Based Authorization
-- Validation & Exception Handling
-- Pagination
+- DTO Architecture
+- Validation & Global Exception Handling
+- Pagination & Sorting
 - Search & Filtering
 - Swagger/OpenAPI Documentation
 - Unit & Integration Testing
 - Redis Caching
+- Rate Limiting
+- Recommendation System
+- Logging & Monitoring
 - CI/CD Pipelines
 
-## Frontend
+---
+
+## Frontend Roadmap
+
 - React Frontend
 - Responsive UI
 - Authentication Screens
-- Course Feed
 - User Dashboard
+- Course Feed
+- Profile System
 - Real-time Features
 
-## Deployment
-- Dockerized Full Stack Setup
+---
+
+## Deployment Roadmap
+
+- Full Dockerized Deployment
 - AWS Deployment
 - Nginx Reverse Proxy
-- GitHub Actions
+- GitHub Actions CI/CD
+- Production Database Configuration
+
+---
+
+# Learning Objectives
+
+This project is being developed to strengthen understanding of:
+
+- Spring Boot Architecture
+- REST API Design
+- Database Relationships
+- ORM with Hibernate
+- Backend Scalability
+- Docker-Based Development
+- Full-Stack System Design
+- Production-Oriented Engineering Practices
 
 ---
 
@@ -310,8 +385,12 @@ password
 
 Kartikey
 
+GitHub Repository:
+
+https://github.com/23-kartikey/course-distributor
+
 ---
 
 # License
 
-This project is currently intended for learning and development purposes.
+This project is currently intended for learning, experimentation, and portfolio development purposes.
