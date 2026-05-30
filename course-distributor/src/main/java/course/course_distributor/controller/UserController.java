@@ -1,6 +1,7 @@
 package course.course_distributor.controller;
 
 import java.io.IOException;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import course.course_distributor.dto.EditProfileResponse;
+import course.course_distributor.dto.FollowersResponse;
 import course.course_distributor.dto.UserProfileResponse;
 import course.course_distributor.service.UserService;
 
@@ -65,6 +67,11 @@ public class UserController {
         logger.info("PRINCIPAL CLASS: {}",
             authentication.getPrincipal().getClass());
         return ResponseEntity.ok(service.getEditProfile(authentication.getName()));
+    }
+
+    @GetMapping("/followers")
+    public ResponseEntity<Set<FollowersResponse>> getFollowers(@PathVariable Long id){
+        return ResponseEntity.ok(service.getFollowers(id));
     }
 
     @PostMapping("/follow/{id}")
