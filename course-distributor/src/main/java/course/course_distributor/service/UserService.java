@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import course.course_distributor.dto.DetailsRequest;
 import course.course_distributor.dto.EditProfileResponse;
+import course.course_distributor.dto.FollowersResponse;
 import course.course_distributor.dto.UserProfileResponse;
 import course.course_distributor.entity.User;
 import course.course_distributor.repository.UserRepository;
@@ -114,6 +117,17 @@ public class UserService {
         User user = userRepo.findByUsername(username).orElseThrow(()->new UsernameNotFoundException(username));
         user.getFollowing().remove(followedUser);
         userRepo.save(user);
+    }
+
+    public Set<FollowersResponse> getFollowers(String username){
+
+        User user = userRepo.findByUsername(username).orElseThrow(()->new UsernameNotFoundException(username));
+        return user.getFollowers().stream().map(this::toFollowersResponse).collect(Collectors.toSet());
+
+    }
+
+    private FollowersResponse toFollowersResponse(User user){
+        return FollowersResponse.builder().id(user.getId()).name(user.getUsername()).build();
     }
 
 }
