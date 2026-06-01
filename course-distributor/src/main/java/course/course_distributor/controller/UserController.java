@@ -69,11 +69,6 @@ public class UserController {
         return ResponseEntity.ok(service.getEditProfile(authentication.getName()));
     }
 
-    @GetMapping("/followers")
-    public ResponseEntity<Set<FollowersResponse>> getFollowers(Authentication authentication){
-        return ResponseEntity.ok(service.getFollowers(authentication.getName()));
-    }
-
     @PostMapping("/follow/{id}")
     public ResponseEntity<Void> followUser(Authentication authentication, @PathVariable long id){
         service.followUser(authentication.getName(), id);
