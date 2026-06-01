@@ -119,13 +119,6 @@ public class UserService {
         userRepo.save(user);
     }
 
-    public Set<FollowersResponse> getFollowers(String username){
-
-        User user = userRepo.findByUsername(username).orElseThrow(()->new UsernameNotFoundException(username));
-        return user.getFollowers().stream().map(this::toFollowersResponse).collect(Collectors.toSet());
-
-    }
-
     private FollowersResponse toFollowersResponse(User user){
         return FollowersResponse.builder().id(user.getId()).name(user.getUsername()).build();
     }
