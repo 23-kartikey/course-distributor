@@ -13,7 +13,6 @@ services:
       MYSQL_DATABASE: course_distributor
       MYSQL_USER: kartikey
       MYSQL_PASSWORD: password
-
     ports:
       - "3307:3306"
 
