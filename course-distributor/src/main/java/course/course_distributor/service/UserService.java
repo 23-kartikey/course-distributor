@@ -119,6 +119,10 @@ public class UserService {
         userRepo.save(user);
     }
 
+    public Set<FollowersResponse> getFollowers(Long id){
+        
+    }
+
     private FollowersResponse toFollowersResponse(User user){
         return FollowersResponse.builder().id(user.getId()).name(user.getUsername()).build();
     }
