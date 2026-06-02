@@ -15,3 +15,9 @@ export type EditProfileType = {
     username: string;
     about: string;
 }
+
+
+export type Follower = {
+    id: number;
+    name: string;
+}
