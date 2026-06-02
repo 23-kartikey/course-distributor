@@ -81,5 +81,10 @@ public class UserController {
         return ResponseEntity.status(201).build();
     }
 
+    @GetMapping("/followers/{id}")
+    public ResponseEntity<Set<FollowersResponse>> getFollowers(@PathVariable Long id){
+        
+    }
+
 
 }
