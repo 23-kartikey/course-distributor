@@ -1,5 +1,5 @@
 import API from "./api";
-import type { EditProfileType, UserProfileType } from "../types/user";
+import type { EditProfileType, Follower, UserProfileType } from "../types/user";
 
 export const getProfile = async():Promise<UserProfileType> => {
 
@@ -47,8 +47,11 @@ export const follow = async(id: number):Promise<void> => {
 }
 
 export const unfollow = async(id: number):Promise<void> => {
-    const response = await API.post(`/user/unfollow/${id}`)
+    const response = await API.post(`/user/unfollow/${id}`);
     return response.data;
 }
 
-export const getFollowers = async(id: number):Promise<
+export const getFollowers = async(id: number):Promise<Follower[]> => {
+    const response = await API.get(`/user/followers/${id}`);
+    return response.data;
+}
