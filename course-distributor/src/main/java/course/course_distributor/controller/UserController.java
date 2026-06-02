@@ -83,7 +83,7 @@ public class UserController {
 
     @GetMapping("/followers/{id}")
     public ResponseEntity<Set<FollowersResponse>> getFollowers(@PathVariable Long id){
-        
+        return ResponseEntity.ok(service.getFollowers(id));
     }
 
 
