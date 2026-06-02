@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
@@ -120,7 +121,8 @@ public class UserService {
     }
 
     public Set<FollowersResponse> getFollowers(Long id){
-        
+        User user = userRepo.findById(id).orElseThrow(()->new UsernameNotFoundException("User not found - "+id));
+        return user.getFollowers().stream().map(this::toFollowersResponse).collect(Collectors.toSet());
     }
 
     private FollowersResponse toFollowersResponse(User user){
