@@ -93,6 +93,7 @@ const UserProfile = () => {
                             </div>
                             <div>
                                 <Link className = "link" to={`/followers/${profile.id}`}><span>{profile.followers}</span></Link>
+                                <p>Followers</p>
                             </div>
                             <div>
                                 <span>{profile.following}</span>
