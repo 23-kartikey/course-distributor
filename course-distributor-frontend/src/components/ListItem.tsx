@@ -1,6 +1,10 @@
 import type { Follower } from "../types/user";
 
-const ListItem = ({item}: ) => {
+type ListItemProps = {
+    item: Follower;
+}
+
+const ListItem = ({item}: ListItemProps) => {
     return(
         <li>
             <span>{item.name}</span>
