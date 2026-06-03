@@ -1,4 +1,5 @@
 export type UserProfileType = {
+    id: number;
     name : string;
     username: string;
     about: string;
