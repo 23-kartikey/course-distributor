@@ -9,6 +9,7 @@ import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import EditProfile from "./pages/EditProfile";
 import UserProfile from "./pages/UserProfile";
+import Followers from "./pages/Followers";
 
 const App = () => {
     return(
