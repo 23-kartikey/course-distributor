@@ -10,6 +10,7 @@ const Profile = () => {
 
     const [profile, setProfile] = useState<UserProfileType>(
         {
+            id: 0,
             username: '',
             name: '',
             about: '',
@@ -59,7 +60,7 @@ const Profile = () => {
                                 <p>Courses</p>
                             </div>
                             <div>
-                                <span>{profile.followers}</span>
+                                <a href={`/followers/${profile.id}`}><span>{profile.followers}</span></a>
                                 <p>Followers</p>
                             </div>
                             <div>
