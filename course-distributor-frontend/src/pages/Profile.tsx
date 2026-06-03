@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import type { UserProfileType } from "../types/user";
 import { getProfile } from "../services/UserService";
 import "../styles/Profile.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Profile = () => {
 
@@ -60,7 +60,7 @@ const Profile = () => {
                                 <p>Courses</p>
                             </div>
                             <div>
-                                <a href={`/followers/${profile.id}`}><span>{profile.followers}</span></a>
+                                <Link className = "link" to={`/followers/${profile.id}`}><span>{profile.followers}</span></Link>
                                 <p>Followers</p>
                             </div>
                             <div>
