@@ -3,6 +3,7 @@ import type { EditProfileType, UserProfileType } from "../types/user";
 import { editUserProfile, getEditUserProfile, getUserProfile } from "../services/UserService";
 import { checkUsername } from "../services/AuthService";
 import { useNavigate } from "react-router-dom";
+import "../styles/EditProfile.css";
 
 const EditProfile = () => {
 
@@ -121,7 +122,7 @@ const EditProfile = () => {
                         }}
                      />
                 </div>
-                <div>
+                <div className = "edit-form">
                     <label>First Name</label>
                     <input name="firstName" value={profile.firstName} onChange={handleChange} />
                     <label>Last Name</label>
