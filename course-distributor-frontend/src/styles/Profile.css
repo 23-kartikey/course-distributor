@@ -116,3 +116,8 @@
     color: #444;
     line-height: 1.6;
 }
+
+.link{
+    color: black;
+    text-decoration: none;
+}
