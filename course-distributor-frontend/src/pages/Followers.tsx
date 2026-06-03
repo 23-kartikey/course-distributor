@@ -7,8 +7,8 @@ import { useParams } from "react-router-dom";
 
 const Followers = () => {
 
-    const { idParam } = useParams();
-    const id = Number(idParam);
+    const { id } = useParams();
+    const localId = Number(id);
 
     const [followers, setFollowers] = useState<Follower[]>([]);
 
@@ -23,7 +23,7 @@ const Followers = () => {
                 console.log("Couldn't fetch followers: ", error);
             }
         }
-        loadFollowers(id);
+        loadFollowers(localId);
     }, []);
 
     return(
