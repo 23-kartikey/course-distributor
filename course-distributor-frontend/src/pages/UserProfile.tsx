@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import type { UserProfileType } from "../types/user";
 import { follow, getUserProfile, unfollow } from "../services/UserService";
 
@@ -92,8 +92,7 @@ const UserProfile = () => {
                                 <p>Courses</p>
                             </div>
                             <div>
-                                <a href={`/followers/${profile.id}`}><span>{profile.followers}</span></a>
-                                <p>Followers</p>
+                                <Link className = "link" to={`/followers/${profile.id}`}><span>{profile.followers}</span></Link>
                             </div>
                             <div>
                                 <span>{profile.following}</span>
