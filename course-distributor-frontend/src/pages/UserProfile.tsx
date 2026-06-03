@@ -92,7 +92,7 @@ const UserProfile = () => {
                                 <p>Courses</p>
                             </div>
                             <div>
-                                <span>{profile.followers}</span>
+                                <a href={`/followers/${profile.id}`}><span>{profile.followers}</span></a>
                                 <p>Followers</p>
                             </div>
                             <div>
