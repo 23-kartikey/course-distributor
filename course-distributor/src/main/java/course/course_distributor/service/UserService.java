@@ -47,6 +47,7 @@ public class UserService {
         User user = userRepo.findByUsernameOrEmail(username, username).orElseThrow(()->new UsernameNotFoundException(username));
         return UserProfileResponse
                     .builder()
+                    .id(user.getId())
                     .username(user.getUsername())
                     .name(user.getFirstName()+" "+user.getLastName())
                     .about(user.getAbout())
@@ -62,6 +63,7 @@ public class UserService {
         User user = userRepo.findById(id).orElseThrow(()->new UsernameNotFoundException("User with id: "+id+" not  found"));
         return UserProfileResponse
                     .builder()
+                    .id(user.getId())
                     .username(user.getUsername())
                     .name(user.getFirstName()+" "+user.getLastName())
                     .about(user.getAbout())
