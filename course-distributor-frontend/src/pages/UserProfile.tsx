@@ -11,6 +11,7 @@ const UserProfile = () => {
 
     const [profile, setProfile] = useState<UserProfileType>(
         {
+            id: 0,
             username: '',
             name: '',
             about: '',
