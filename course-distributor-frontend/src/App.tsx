@@ -24,6 +24,7 @@ const App = () => {
                 <Route path="/create-course" element={<CreateCourse />} />
                 <Route path="/edit-profile" element={<EditProfile />} />
                 <Route path="/profile/:id" element={<UserProfile />} />
+                <Route path="/followers/:id" element={<Followers />} />
             </Routes>
         </BrowserRouter>
     );
