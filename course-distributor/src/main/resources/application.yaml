@@ -3,10 +3,10 @@ spring:
     name: course-distributor
 
   datasource:
-    url: jdbc:mysql://localhost:3307/course_distributor
-    username: kartikey
+    url: jdbc:postgresql://localhost:5432/course_distributor
+    username: postgres
     password: password
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: org.postgresql.Driver
 
   jpa:
     hibernate:
