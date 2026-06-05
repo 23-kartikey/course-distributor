@@ -2,25 +2,25 @@ version: '3.9'
 
 services:
 
-  mysql:
-    image: mysql:8.4
-    container_name: course_distributor_sql
+  # mysql:
+  #   image: mysql:8.4
+  #   container_name: course_distributor_sql
 
-    restart: always
+  #   restart: always
 
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: course_distributor
-      MYSQL_USER: kartikey
-      MYSQL_PASSWORD: password
-    ports:
-      - "3307:3306"
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: root
+  #     MYSQL_DATABASE: course_distributor
+  #     MYSQL_USER: kartikey
+  #     MYSQL_PASSWORD: password
+  #   ports:
+  #     - "3307:3306"
 
-    volumes:
-      - mysql_data:/var/lib/mysql
+  #   volumes:
+  #     - mysql_data:/var/lib/mysql
 
-    networks:
-      - payment-network
+  #   networks:
+  #     - payment-network
 
 volumes:
   mysql_data:
