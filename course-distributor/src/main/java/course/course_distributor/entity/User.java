@@ -12,6 +12,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -24,6 +25,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Builder
+@Table(name="Users")
 public class User{
     
     @Id
@@ -42,7 +44,7 @@ public class User{
     @Column(nullable = false, unique=true, length=30)
     private String email;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 200)
     private String password;
 
     @Column( length = 300)
