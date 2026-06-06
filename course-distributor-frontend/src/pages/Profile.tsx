@@ -3,9 +3,13 @@ import type { UserProfileType } from "../types/user";
 import { getProfile } from "../services/UserService";
 import "../styles/Profile.css";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 
 const Profile = () => {
 
+    const { isAuthenticated } = useAuth();
+
+    if(!isAuthenticated) window.location.href="/login"
     const navigate = useNavigate();
 
     const [profile, setProfile] = useState<UserProfileType>(
