@@ -4,12 +4,14 @@ import { loginUser } from "../services/AuthService";
 import "../styles/Auth.css";
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
 
     const {isAuthenticated, login} = useAuth();
     const [success, setSuccess] = useState(false);
     const [fail, setFail] = useState(false);
+    const [errors, setErrors] = useState<Record<string, string>>({});
     const [loginForm, setLoginForm] = useState<LoginForm>({ usernameOrEmail:'', password:''});
     const navigate = useNavigate();
 
@@ -41,6 +43,9 @@ const Login = () => {
         }
         catch(error){
             setFail(true);
+            if(axios.isAxiosError(error) && error.response){
+                setErrors(error.response.data);
+            }
             console.log("Login error: ", error);
         }
 
@@ -53,8 +58,14 @@ const Login = () => {
                 <div className="auth-group">
                 <label>Email/Username</label>
                 <input className="input" type="text" value={loginForm.usernameOrEmail} onChange={handleChange} name="usernameOrEmail" />
+                {errors.usernameOrEmail && (
+                    <p style = {{color:"red"}}>{errors.usernameOrEmail}</p>
+                )}
                 <label>Password</label>
                 <input className="input" type="password" value={loginForm.password} onChange={handleChange} name="password" />
+                {errors.password && (
+                    <p style = {{color:"red"}}>{errors.password}</p>
+                )}
                 <button type="submit">Login</button>
                 </div>
                 <p>New here? Click <a href="/register">here</a> to register</p>
