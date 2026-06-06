@@ -12,6 +12,7 @@ services:
       POSTGRES_DB: course_distributor
       POSTGRES_USER: kartikey
       POSTGRES_PASSWORD: password
+      TZ: Asia/Kolkata
 
     ports:
       - "5432:5432"
@@ -26,7 +27,7 @@ volumes:
   postgres_data:
 
 networks:
-  payment_network:
+  payment-network:
 
 
   # mysql:
