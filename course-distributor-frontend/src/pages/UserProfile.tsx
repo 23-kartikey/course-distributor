@@ -2,12 +2,21 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import type { UserProfileType } from "../types/user";
 import { follow, getUserProfile, unfollow } from "../services/UserService";
+import { useAuth } from "../contexts/AuthContext";
 
+//profile page of other users
 const UserProfile = () => {
+
+    const { isAuthenticated } = useAuth();
+    console.log("UserProfile:", isAuthenticated);
+    const navigate = useNavigate();
+    if(!isAuthenticated){
+        alert(isAuthenticated);
+        window.location.href=("/login");
+    }
 
     const { id } = useParams();
     const userId = Number(id);
-    const navigate = useNavigate();
 
     const [profile, setProfile] = useState<UserProfileType>(
         {
