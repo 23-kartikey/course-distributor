@@ -11,6 +11,7 @@ import EditProfile from "./pages/EditProfile";
 import UserProfile from "./pages/UserProfile";
 import Followers from "./pages/Followers";
 import Following from "./pages/Following";
+import Footer from "./pages/Footer";
 
 const App = () => {
     return(
@@ -28,6 +29,7 @@ const App = () => {
                 <Route path="/followers/:id" element={<Followers />} />
                 <Route path="/following/:id" element={<Following />} />
             </Routes>
+            <Footer />
         </BrowserRouter>
     );
 }
