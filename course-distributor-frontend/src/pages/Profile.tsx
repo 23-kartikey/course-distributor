@@ -5,12 +5,17 @@ import "../styles/Profile.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 
+
+//your own profile page
 const Profile = () => {
 
     const { isAuthenticated } = useAuth();
-
-    if(!isAuthenticated) window.location.href="/login"
+    console.log("Profile:", isAuthenticated);
     const navigate = useNavigate();
+    if(!isAuthenticated){
+        alert(isAuthenticated);
+        window.location.href=("/login");
+    }
 
     const [profile, setProfile] = useState<UserProfileType>(
         {
