@@ -3,9 +3,9 @@ spring:
     name: course-distributor
 
   datasource:
-    url: jdbc:postgresql://ep-floral-king-aqbf3zr6-pooler.c-8.us-east-1.aws.neon.tech/neondb?sslmode=require
-    username: neondb_owner
-    password: npg_kDKiRjSIu27d
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_URL}
+    password: ${SPRING_DATASOURCE_USERNAME}
     driver-class-name: org.postgresql.Driver
 
   jpa:
@@ -27,5 +27,5 @@ spring:
       max-file-size: 50MB
       max-request-size: 50MB
 app:
-  jwt-secret: daf66e01593f61a15b857cf433aae03a005812b31234e149036bcc8dee755dbb
+  jwt-secret: ${JWT_SECRET}
   jwt-expiration: 604800000
