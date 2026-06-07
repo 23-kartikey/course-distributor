@@ -3,9 +3,9 @@ spring:
     name: course-distributor
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/course_distributor
-    username: kartikey
-    password: password
+    url: jdbc:postgresql://ep-floral-king-aqbf3zr6-pooler.c-8.us-east-1.aws.neon.tech/neondb?sslmode=require
+    username: neondb_owner
+    password: npg_kDKiRjSIu27d
     driver-class-name: org.postgresql.Driver
 
   jpa:
