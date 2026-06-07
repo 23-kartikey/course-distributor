@@ -68,7 +68,7 @@ const Profile = () => {
                                 <p>Followers</p>
                             </div>
                             <div>
-                                <span>{profile.following}</span>
+                                <Link className = "link" to={`/following/${profile.id}`}><span>{profile.following}</span></Link>
                                 <p>Following</p>
                             </div>
                         </div>
