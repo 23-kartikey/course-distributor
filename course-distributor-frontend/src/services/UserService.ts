@@ -55,3 +55,8 @@ export const getFollowers = async(id: number):Promise<Follower[]> => {
     const response = await API.get(`/user/followers/${id}`);
     return response.data;
 }
+
+export const getFollowing = async(id: number):Promise<Follower[]> => {
+    const response = await API.get(`user/followng/${id}`);
+    return response.data;
+}
